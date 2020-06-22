@@ -1,32 +1,33 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div class="layout">
+    <TheHeader />
+    <CritterMain class="layout__main" />
+    <TheFooter />
   </div>
 </template>
 
+<script>
+import TheHeader from '@/components/TheHeader.vue';
+import TheFooter from '@/components/TheFooter.vue';
+import CritterMain from '@/components/CritterMain.vue';
+
+export default {
+  name: 'acnh-search',
+  components: { TheHeader, TheFooter, CritterMain },
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+@import '@/styles/styles.scss';
 
-#nav {
-  padding: 30px;
+.layout {
+  @include size(100vw, 100vh);
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  background-color: var(--body-bg);
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  &__main {
+    background-color: var(--body-bg);
   }
 }
 </style>

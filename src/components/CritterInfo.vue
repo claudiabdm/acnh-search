@@ -1,0 +1,89 @@
+<template>
+  <div class="critter">
+    <img
+      :src="currentCritter.img"
+      class="critter__img"
+      width="auto"
+      height="100px"
+    />
+    <template v-if="!currentCritter.allYear">
+      <p class="critter__text">
+        <span class="critter__property">Start Month:</span>
+        {{ currentCritter.startMonth | formatMonth }}
+      </p>
+      <p class="critter__text">
+        <span class="critter__property">End Month:</span>
+        {{ currentCritter.endMonth | formatMonth }}
+      </p>
+      <p class="critter__text">
+        <span class="critter__property">Available Months:</span>
+        {{ currentCritter.availableMonths | formatMonth }}
+      </p>
+    </template>
+    <p class="critter__text" v-if="currentCritter.allYear">All year</p>
+    <p class="critter__text">
+      <span class="critter__property">Time:</span> {{ currentCritter.time }}
+    </p>
+    <p class="critter__text">
+      <span class="critter__property">Location:</span>
+      {{ currentCritter.location }}
+    </p>
+    <p class="critter__text">
+      <span class="critter__property">Rarity:</span> {{ currentCritter.rarity }}
+    </p>
+    <p class="critter__text">
+      <span class="critter__property">Shadow:</span> {{ currentCritter.shadow }}
+    </p>
+    <p class="critter__text">
+      <span class="critter__property">Price:</span>
+      {{ currentCritter.price }} bells
+    </p>
+    <p class="critter__text">
+      <span class="critter__property">Price {{ buyerType }}:</span>
+      {{ currentCritter.priceCjFlick }} bells
+    </p>
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue';
+export default Vue.extend({
+  props: {
+    currentCritter: {
+      type: Object,
+    },
+  },
+  computed: {
+    buyerType(): string {
+    if (this.currentCritter.type === 'fish') {
+      return 'Cj';
+    } else {
+      return 'Flick';
+    }
+  }
+  }
+});
+</script>
+
+<style lang="scss" scoped>
+@import '@/styles/global/_variables.scss';
+@import '@/styles/mixins/_mixins.scss';
+
+.critter {
+  @include flex(flex-start, flex-start);
+  flex-direction: column;
+
+  &__img {
+    align-self: center;
+  }
+
+  &__text {
+    padding: 5px;
+    line-height: 1.25;
+  }
+
+  &__property {
+    font-weight: $font-weight-bold;
+  }
+}
+</style>

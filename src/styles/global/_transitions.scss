@@ -1,0 +1,34 @@
+//------------------------------//
+// TRANSITIONS                  //
+// ---------------------------- //
+
+.fade {
+  &-enter,
+  &-leave-to {
+    opacity: 0;
+    visibility: hidden;
+  }
+  &-enter-active {
+    transition: opacity 0.35s ease-out, visibility 0.35s;
+    transition-delay: 2s;
+  }
+  &-enter-leave-active {
+    transition: opacity 0.9s ease-out, visibility 2s;
+    transition-delay: 2s;
+  }
+}
+
+.slide {
+  &-fade-enter,
+  &-fade-leave-to {
+    transform: translate3d(0, -100%, 0);
+  }
+  &-fade-enter-active {
+    transition: all 0.35s ease-out;
+    transition-delay: 2s;
+  }
+  &-fade-leave-active {
+    transition: all 0.35s ease-out;
+    transition-delay: 2s;
+  }
+}

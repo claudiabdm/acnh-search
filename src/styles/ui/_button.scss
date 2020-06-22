@@ -1,0 +1,92 @@
+//------------------------------//
+// BUTTON                       //
+// ---------------------------- //
+:root {
+  --button-height: 2.5rem;
+  --button-font-size: 1.75rem;
+  --button-bgcolor: #{$primary};
+  --button-hover: #{darken($primary, 10%)};
+}
+
+.btn {
+  @include flex(center, center);
+  @include size($width: rem(50px), $height: var(--button-height));
+
+  fill: #fff;
+  border: 0;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: var(--button-bgcolor);
+  font-size: var(--button-font-size);
+  font-weight: $font-weight-bold;
+  text-align: center;
+  line-height: 0;
+  cursor: pointer;
+  transition: background-color 0.1s linear;
+  box-shadow: $box-shadow-sharpen;
+
+  &:disabled, &--disabled {
+    background-color: $grey-200;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: var(--button-hover);
+  }
+
+  &:focus {
+    outline: none;
+    background-color: var(--button-hover);
+  }
+
+  @media screen and (min-width: $md) {
+    min-width: 100px;
+  }
+
+}
+
+//--- Colors ---//
+
+.btn--secondary {
+  --button-bgcolor: #{$secondary};
+  --button-hover: #{darken($secondary, 5%)};
+}
+
+.btn--success {
+  --button-bgcolor: #{$success};
+  --button-hover: #{darken($success, 5%)};
+}
+
+//--- Sizes ---//
+
+.btn--m {
+  --button-height: 1.875rem;
+  --button-font-size: 1.25rem;
+}
+
+.btn--sm {
+  --button-height: 1.563rem;
+  --button-font-size: 0.675rem;
+}
+
+.btn--xs {
+  width: fit-content;
+  height: 1rem;
+  --button-font-size: 0.675rem;
+}
+
+//--- Close button ---//
+.btn--close {
+  width: max-content;
+  min-width: unset;
+  margin: 0;
+  background: none;
+  color: $base;
+  transition: color 0.2s ease-out;
+  box-shadow: none;
+
+  &:hover, &:focus {
+    color: #{darken($base, 20%)};
+    --button-hover: rgba(0, 0, 0, 0);
+  }
+}
+
