@@ -1,12 +1,24 @@
 <template>
   <nav class="month-navbar">
-    <button type="button" class="btn month-navbar__button" @click="prevMonth()">
+    <button
+      type="button"
+      class="btn month-navbar__button"
+      id="buttonPrev"
+      @click="prevMonth()"
+    >
+      Previous Month
       <svg class="icon icon--sm">
         <use xlink:href="@/assets/sprite.svg#prev-arrow" />
       </svg>
     </button>
     <h2 class="month-navbar__title">{{ month | formatMonth }}</h2>
-    <button type="button" class="month-navbar__button btn" @click="nextMonth()">
+    <button
+      type="button"
+      class="month-navbar__button btn"
+      id="buttonNext"
+      @click="nextMonth()"
+    >
+    Next Month
       <svg class="icon icon--sm">
         <use xlink:href="@/assets/sprite.svg#next-arrow" />
       </svg>
@@ -58,12 +70,11 @@ export default Vue.extend({
     font-weight: 700;
   }
 
-  &__buttons {
-    @include flex(center, center);
-  }
-
-  &__button + &__button {
-    margin-left: 20px;
+  &__button {
+    font-size: 0;
+    & + & {
+      margin-left: 20px;
+    }
   }
 }
 </style>
