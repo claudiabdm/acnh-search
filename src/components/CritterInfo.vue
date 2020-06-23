@@ -3,8 +3,6 @@
     <img
       :src="currentCritter.img"
       class="critter__img"
-      width="auto"
-      height="100px"
     />
     <template v-if="!currentCritter.allYear">
       <p class="critter__text">
@@ -74,6 +72,7 @@ export default Vue.extend({
   flex-direction: column;
 
   &__img {
+    @include size(auto, 100px);
     align-self: center;
   }
 
