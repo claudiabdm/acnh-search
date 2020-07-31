@@ -1,8 +1,23 @@
 <template>
   <header class="header">
+    <svg>
+      <use :href="`assets/icons/sprite.svg#${critter.name}`"/>
+    </svg>
     <h1 class="header__title">ACNH Search</h1>
   </header>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  data() {
+    return {
+      publicPath: process.env.BASE_URL,
+      critter: {name: 'bugs'}
+    }
+  }
+})
+</script>
 
 <style lang="scss">
 @import '@/styles/global/_variables.scss';
