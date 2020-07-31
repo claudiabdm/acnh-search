@@ -107,6 +107,7 @@ export default Vue.extend({
     color: #fff;
     background-color: $primary;
     font-weight: $font-weight-bold;
+    text-transform: capitalize;
     transform: rotateZ(-5deg);
     box-shadow: $box-shadow-sharpen;
     z-index: 1000;

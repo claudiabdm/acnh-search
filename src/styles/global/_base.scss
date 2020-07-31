@@ -2,8 +2,8 @@
 /* BASE                         */
 /* ---------------------------- */
 body {
-  background-image: radial-gradient(var(--tertiary) 5%, transparent 5%),
-    radial-gradient(var(--tertiary) 5%, transparent 5%);
+  background-image: radial-gradient(var(--tertiary) 10%, transparent 10%),
+    radial-gradient(var(--tertiary) 10%, transparent 10%);
   background-color: var(--body-bg);
   background-position: 0 0, 50px 50px;
   background-size: 100px 100px;
@@ -12,9 +12,7 @@ body {
   font-weight: $font-weight-bold;
   font-size: $font-size-body;
   line-height: 1;
-  & .modal--show {
-    overflow: hidden;
-  }
+  overflow: hidden;
 }
 
 a {

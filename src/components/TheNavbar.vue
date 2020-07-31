@@ -50,7 +50,7 @@ export default Vue.extend({
 @import '@/styles/mixins/_mixins.scss';
 
 .side-menu {
-  background-color: rgba($color: $primary, $alpha: 0.75);
+  background-color: rgba($color: $primary, $alpha: 0.5);
   &__title {
     font-size: 0;
   }
@@ -59,7 +59,7 @@ export default Vue.extend({
     width: $navbar-width-desktop;
     box-shadow: $box-shadow-sharpen-right;
     &__title {
-      color: #fff;
+      color: var(--tertiary);
       padding: 20px;
       font-size: rem(32px);
       font-family: 'AcnhTitle';
@@ -73,14 +73,14 @@ export default Vue.extend({
   @include flex(center, space-between);
   height: $navbar-height;
   padding: 20px;
-  background-color: rgba($color: $primary, $alpha: 0.75);
+  background-color: rgba($color: $primary, $alpha: 0.5);
   backdrop-filter: blur(8px);
   z-index: 1000;
   font-size: 0;
 
   &__link {
     @include flex(center, center);
-    color: #fff;
+    color: var(--tertiary);
     font-family: $font-secondary;
 
     &:hover {
@@ -90,7 +90,7 @@ export default Vue.extend({
 
   &__icon {
     @include size($navbar-height / 1.5);
-    color: #fff;
+    color: var(--tertiary);
   }
 
   @media screen and (min-width: $md) {

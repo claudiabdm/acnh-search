@@ -63,8 +63,6 @@ export default Vue.extend({
   @include fixed($top: 0);
   @include flex(center, space-between);
   width: 100vw;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
   padding: 10px;
   color: var(--body-bg);
   background-color: rgba($color: $brown-100, $alpha: 0.75);

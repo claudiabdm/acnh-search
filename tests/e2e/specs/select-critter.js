@@ -5,44 +5,45 @@ describe('The Select Search', () => {
     cy.visit('/')
   })
 
-  it('should select fish in spanish', () => {
-    cy.get('select[id=currentSearch]')
-      .select('Peces - ES')
-      .should('have.value', 'fishES')
+  it('should select spanish from EU', () => {
+    cy.get('select[id=language]')
+      .select('EU-es')
+      .should('have.value', 'name-EUes')
       .then(() => {
         cy.get('.container')
-          .contains('Cacho')
+          .contains('cacho')
       })
   })
 
-  it('should select fish in english', () => {
-    cy.get('select[id=currentSearch]')
-      .select('Fish - EN')
-      .should('have.value', 'fishEN')
+  it('should select chinese from China', () => {
+    cy.get('select[id=language]')
+      .select('CN-zh')
+      .should('have.value', 'name-CNzh')
       .then(() => {
         cy.get('.container')
-          .contains('Pale Chub')
+          .contains('溪哥')
       })
   })
 
-  it('should select bugs in spanish', () => {
-    cy.get('select[id=currentSearch]')
-      .select('Insectos - ES')
-      .should('have.value', 'bugsES')
+  it('should select english from US', () => {
+    cy.get('select[id=language]')
+      .select('US-en')
+      .should('have.value', 'name-USen')
       .then(() => {
         cy.get('.container')
-          .contains('Mariposa cometa de papel')
+          .contains('pale chub')
       })
   })
 
-  it('should select bugs in english', () => {
-    cy.get('select[id=currentSearch]')
-      .select('Bugs - EN')
-      .should('have.value', 'bugsEN')
+  it('should select southern hemisphere', () => {
+    cy.get('select[id=hemisphere]')
+      .select('southern')
+      .should('have.value', 'southern')
       .then(() => {
         cy.get('.container')
-          .contains('Paper kite butterfly')
+          .contains('pale chub')
       })
   })
+
 
 })
