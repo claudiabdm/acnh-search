@@ -1,14 +1,10 @@
 <template>
   <div>
-    <div>
-      <CritterSearchForm v-model="critterSearch" />
-    </div>
-    <div>
-      <CritterMonthNavbar
-        :currentMonth="currentMonth"
-        @changeMonth="onChangeMonth"
-      />
-    </div>
+    <CritterMonthNavbar
+      :currentMonth="currentMonth"
+      @changeMonth="onChangeMonth"
+    />
+
     <div class="container">
       <div class="container__legend">
         <p class="container__elem container__elem--common">Common</p>
@@ -39,6 +35,7 @@
         />
       </md-list>
     </div>
+
     <CritterModal
       :title="currentCritter.name"
       :showModal="isModalVisible"
@@ -52,7 +49,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import CritterSearchForm from '@/components/CritterSearchForm.vue';
+// import CritterSearchForm from '@/components/CritterSearchForm.vue';
 import CritterMonthNavbar from '@/components/CritterMonthNavbar.vue';
 import CritterModal from '@/components/CritterModal.vue';
 import CritterList from '@/components/CritterList.vue';
@@ -63,7 +60,6 @@ import { crittersService } from '@/shared/critters.service';
 export default Vue.extend({
   name: 'CritterMain',
   components: {
-    CritterSearchForm,
     CritterMonthNavbar,
     CritterList,
     CritterModal,
@@ -160,7 +156,7 @@ export default Vue.extend({
   }
 
   &__lists {
-    width: 100vw;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: rem(20px);

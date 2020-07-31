@@ -60,8 +60,14 @@ export default Vue.extend({
 @import '@/styles/mixins/_mixins.scss';
 
 .month-navbar {
+  @include fixed($top: 0);
   @include flex(center, space-between);
-  padding: $padding-sides;
+  width: 100vw;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: var(--body-bg);
+  box-shadow: $box-shadow-sharpen;
+  z-index: 1000;
 
   &__title {
     @include flex(center, flex-start);

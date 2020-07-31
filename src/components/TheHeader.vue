@@ -1,8 +1,5 @@
 <template>
   <header class="header">
-    <svg>
-      <use :href="`assets/icons/sprite.svg#${critter.name}`"/>
-    </svg>
     <h1 class="header__title">ACNH Search</h1>
   </header>
 </template>

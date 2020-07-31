@@ -1,19 +1,18 @@
 <template>
   <div class="layout">
-    <TheHeader />
     <CritterMain class="layout__main" />
-    <TheFooter />
+    <TheNavbar class="layout__navbar"/>
   </div>
 </template>
 
 <script>
-import TheHeader from '@/components/TheHeader.vue';
-import TheFooter from '@/components/TheFooter.vue';
+import TheNavbar from '@/components/TheNavbar.vue';
+// import TheFooter from '@/components/TheFooter.vue';
 import CritterMain from '@/components/CritterMain.vue';
 
 export default {
   name: 'acnh-search',
-  components: { TheHeader, TheFooter, CritterMain },
+  components: { TheNavbar, CritterMain },
 };
 </script>
 
@@ -22,12 +21,19 @@ export default {
 
 .layout {
   @include size(100vw, 100vh);
-  display: grid;
-  grid-template-rows: min-content 1fr min-content;
   background-color: var(--body-bg);
+  overflow: hidden;
 
   &__main {
+    @include size(100%, 100%);
+    padding: $header-height+10px 0 $navbar-height;
     background-color: var(--body-bg);
+    overflow: auto;
+  }
+
+  @media screen and (min-width: $md){
+    @include flex(center, flex-end);
+    flex-direction: row-reverse;
   }
 }
 </style>

@@ -25,10 +25,10 @@ $gradient: linear-gradient(0, $primary 0%, $secondary 100%);
 
 // Scaffolding
 // ------------------------------------------
-$header-height:50px;
-$navbar-height:40px;
+$header-height: 60px;
+$navbar-height: 50px;
 
-$navbar-width-desktop: 18vw;
+$navbar-width-desktop: 20vw;
 
 
 $link-color: $secondary;
@@ -42,6 +42,7 @@ $border: 1px solid $grey-100;
 $box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.075);
 
 $box-shadow-sharpen: 0 3px 1px 1px rgba(0, 0, 0, 0.05);
+$box-shadow-sharpen-up: 0 -3px 1px 1px rgba(0, 0, 0, 0.05);
 
 // Font
 // ------------------------------------------
