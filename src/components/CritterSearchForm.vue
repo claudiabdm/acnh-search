@@ -2,7 +2,23 @@
   <div class="form">
     <div class="form__group">
       <label for="currentSearch" class="form__label">
-        What are you looking for?
+        Select Language:
+      </label>
+      <select
+        id="currentSearch"
+        :value="inputVal"
+        @input="updateSearch"
+        class="form__control"
+      >
+        <option value="fishES"> Peces - ES </option>
+        <option value="bugsES"> Insectos - ES </option>
+        <option value="fishEN"> Fish - EN </option>
+        <option value="bugsEN"> Bugs - EN </option>
+      </select>
+    </div>
+     <div class="form__group">
+      <label for="currentSearch" class="form__label">
+        Select Hemisphere:
       </label>
       <select
         id="currentSearch"

@@ -80,7 +80,7 @@ const createCritter = function(
     price: critter.price,
     priceCjFlick: critter[buyer],
     shadow: critter.shadow,
-    img: `${process.env.BASE_URL}img/critters/${critterType}-${critter.id}.png`,
+    img: `${process.env.BASE_URL}assets/img/critters/${critterType}-${critter.id}.png`,
     type: critterType,
   };
   return critterObj;

@@ -6,11 +6,12 @@
 // -----------------------------------------
 
 // Colors
-$primary: #25ced1;
+$primary: #49dbc6;
 $secondary:#ea526f;
-$tertiary: #FFFAE6;
-$base: rgb(122, 111, 97);
+$tertiary: #fffae6;
+$base: rgb(134, 121, 104);
 $success: #72e67d;
+$brown-100: #ba9461;
 
 // Grey
 $grey-100: #c4c4c4;
@@ -43,12 +44,13 @@ $box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.075);
 
 $box-shadow-sharpen: 0 3px 1px 1px rgba(0, 0, 0, 0.05);
 $box-shadow-sharpen-up: 0 -3px 1px 1px rgba(0, 0, 0, 0.05);
+$box-shadow-sharpen-right: 3px 0px 1px 1px rgba(0, 0, 0, 0.05);
 
 // Font
 // ------------------------------------------
 
-$font-primary: "Roboto";
-$font-secondary: "Quattrocento";
+$font-primary: "AcnhDialog";
+$font-secondary: "AcnhTitle";
 $font-family-primary: $font-primary,
 Arial,
 sans-serif;

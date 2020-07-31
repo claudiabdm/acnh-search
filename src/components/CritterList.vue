@@ -71,7 +71,8 @@ export default Vue.extend({
   &__title {
     color: var(--body-color);
     font-size: rem(20px);
-    font-weight: $font-weight-bold;
+    font-weight: 600;
+    letter-spacing: 0.5px;
   }
 
   &__text {
@@ -82,6 +83,7 @@ export default Vue.extend({
     @include size(100%, rem(30px));
     @include flex(center, flex-start);
     transition: font-size 0.1s linear;
+    font-weight: $font-weight-normal;
 
     &:hover {
       cursor: pointer;

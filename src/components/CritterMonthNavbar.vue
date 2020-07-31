@@ -8,7 +8,7 @@
     >
       Previous Month
       <svg class="icon icon--sm">
-        <use xlink:href="assets/icons/sprite.svg#prev-arrow" />
+        <use href="assets/icons/sprite.svg#prev-arrow" />
       </svg>
     </button>
     <h2 class="month-navbar__title">{{ month | formatMonth }}</h2>
@@ -18,7 +18,7 @@
       id="buttonNext"
       @click="nextMonth()"
     >
-    Next Month
+      Next Month
       <svg class="icon icon--sm">
         <use href="assets/icons/sprite.svg#next-arrow" />
       </svg>
@@ -63,9 +63,14 @@ export default Vue.extend({
   @include fixed($top: 0);
   @include flex(center, space-between);
   width: 100vw;
-  border-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   padding: 10px;
-  background-color: var(--body-bg);
+  color: var(--body-bg);
+  background-color: rgba($color: $brown-100, $alpha: 0.75);
+  font-family: $font-secondary;
+  letter-spacing: 2px;
+  backdrop-filter: blur(8px);
   box-shadow: $box-shadow-sharpen;
   z-index: 1000;
 
@@ -77,10 +82,16 @@ export default Vue.extend({
   }
 
   &__button {
+    background-color: var(--body-color);
     font-size: 0;
     & + & {
       margin-left: 20px;
     }
+  }
+
+  @media screen and (min-width: $md) {
+    width: 100vw - $navbar-width-desktop;
+    border-radius: 0;
   }
 }
 </style>

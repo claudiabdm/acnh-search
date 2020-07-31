@@ -4,6 +4,7 @@
       :currentMonth="currentMonth"
       @changeMonth="onChangeMonth"
     />
+    <CritterSearchForm/>
 
     <div class="container">
       <div class="container__legend">
@@ -49,7 +50,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-// import CritterSearchForm from '@/components/CritterSearchForm.vue';
+import CritterSearchForm from '@/components/CritterSearchForm.vue';
 import CritterMonthNavbar from '@/components/CritterMonthNavbar.vue';
 import CritterModal from '@/components/CritterModal.vue';
 import CritterList from '@/components/CritterList.vue';
@@ -64,6 +65,7 @@ export default Vue.extend({
     CritterList,
     CritterModal,
     CritterInfo,
+    CritterSearchForm
   },
   data() {
     return {
@@ -142,7 +144,7 @@ export default Vue.extend({
 .container {
   @include flex(center, center);
   flex-direction: column;
-  background-color: var(--body-bg);
+  background: transparent;
 
   &__legend {
     @include flex(flex-start, center);
@@ -166,7 +168,7 @@ export default Vue.extend({
 
   &__elem {
     font-size: 1rem;
-    font-weight: $font-weight-light;
+    font-weight: $font-weight-normal;
 
     & + &:not(.list__elem) {
       margin-left: 10px;

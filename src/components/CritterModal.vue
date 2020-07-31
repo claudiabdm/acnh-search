@@ -13,7 +13,7 @@
               @click="onClose()"
             >
               <svg class="icon icon--sm icon--nofilter">
-                <use xlink:href="assets/sprite.svg#close" />
+                <use href="assets/icons/sprite.svg#close" />
               </svg>
             </button>
           </header>

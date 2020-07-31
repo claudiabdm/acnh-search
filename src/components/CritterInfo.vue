@@ -78,6 +78,7 @@ export default Vue.extend({
 
   &__text {
     padding: 5px;
+    font-weight: $font-weight-normal;
     line-height: 1.25;
   }
 

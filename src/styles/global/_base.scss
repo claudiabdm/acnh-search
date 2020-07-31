@@ -2,10 +2,14 @@
 /* BASE                         */
 /* ---------------------------- */
 body {
-  background-color: $primary;
+  background-image: radial-gradient(var(--tertiary) 5%, transparent 5%),
+    radial-gradient(var(--tertiary) 5%, transparent 5%);
+  background-color: var(--body-bg);
+  background-position: 0 0, 50px 50px;
+  background-size: 100px 100px;
   color: var(--body-color);
   font-family: $font-family-primary;
-  font-weight: $font-weight-light;
+  font-weight: $font-weight-bold;
   font-size: $font-size-body;
   line-height: 1;
   & .modal--show {
@@ -19,7 +23,6 @@ a {
   font-weight: $font-weight-light;
   cursor: pointer;
 }
-
 
 b {
   font-weight: $font-weight-bold;

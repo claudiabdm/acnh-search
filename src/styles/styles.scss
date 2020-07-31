@@ -1,7 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 // FONTS                        //
 // ---------------------------- //
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,700i&display=swap');
+@font-face {
+  font-family: 'AcnhTitle'; /*a name to be used later*/
+  src: url(/assets/font/FinkHeavy.ttf); /*URL to font*/
+  src: url(/assets/font/FinkHeavy.woff2); /*URL to font*/
+  src: url(/assets/font/FinkHeavy.woff); /*URL to font*/
+}
+@font-face {
+  font-family: 'AcnhDialog'; /*a name to be used later*/
+  src: url(/assets/font/ArialRoundedBold.ttf);
+}
 
 // CORE                         //
 // ---------------------------- //
