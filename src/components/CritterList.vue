@@ -84,6 +84,7 @@ export default Vue.extend({
     @include flex(center, flex-start);
     transition: font-size 0.1s linear;
     font-weight: $font-weight-normal;
+    text-transform: capitalize;
 
     &:hover {
       cursor: pointer;

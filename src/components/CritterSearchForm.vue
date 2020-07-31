@@ -1,35 +1,33 @@
 <template>
   <div class="form">
     <div class="form__group">
-      <label for="currentSearch" class="form__label">
-        Select Language:
+      <label for="language" class="form__label">
+        Language
       </label>
       <select
-        id="currentSearch"
-        :value="inputVal"
+        id="language"
+        :value="langVal"
         @input="updateSearch"
         class="form__control"
       >
-        <option value="fishES"> Peces - ES </option>
-        <option value="bugsES"> Insectos - ES </option>
-        <option value="fishEN"> Fish - EN </option>
-        <option value="bugsEN"> Bugs - EN </option>
+        <option v-for="lang in languages" :key="lang" :value="lang">
+          {{ `${lang.slice(5, -2)}-${lang.slice(-2)}` }}
+        </option>
       </select>
     </div>
-     <div class="form__group">
-      <label for="currentSearch" class="form__label">
-        Select Hemisphere:
+    <div class="form__group">
+      <label for="hemisphere" class="form__label">
+        Hemisphere
       </label>
       <select
-        id="currentSearch"
-        :value="inputVal"
+        id="hemisphere"
+        :value="hemiVal"
         @input="updateSearch"
         class="form__control"
       >
-        <option value="fishES"> Peces - ES </option>
-        <option value="bugsES"> Insectos - ES </option>
-        <option value="fishEN"> Fish - EN </option>
-        <option value="bugsEN"> Bugs - EN </option>
+        <option v-for="hemi in hemispheres" :key="hemi" :value="hemi">
+          {{ hemi }}
+        </option>
       </select>
     </div>
   </div>
@@ -41,18 +39,46 @@ import Vue from 'vue';
 export default Vue.extend({
   name: 'CritterSearchForm',
   props: {
-    value: {
-      type: String,
+    search: {
+      type: Object,
     },
   },
   data() {
     return {
-      inputVal: this.value,
+      languages: [
+        'name-CNzh',
+        'name-EUde',
+        'name-EUen',
+        'name-EUes',
+        'name-EUfr',
+        'name-EUit',
+        'name-EUnl',
+        'name-EUru',
+        'name-JPja',
+        'name-KRko',
+        'name-TWzh',
+        'name-USen',
+        'name-USes',
+        'name-USfr',
+      ],
+      hemispheres: ['northern', 'southern'],
     };
+  },
+  computed: {
+    langVal(): string {
+      return this.search.lang;
+    },
+    hemiVal(): string {
+      return this.search.hemi;
+    },
   },
   methods: {
     updateSearch(e) {
-      this.$emit('input', e.target.value);
+      const updatedValue = {
+        lang: e.target.id === 'language' ? e.target.value : this.langVal,
+        hemi: e.target.id === 'hemisphere' ? e.target.value : this.hemiVal,
+      };
+      this.$emit('search', updatedValue);
     },
   },
 });
@@ -65,13 +91,16 @@ export default Vue.extend({
 .form {
   @include flex(center, center);
   @include size(auto, auto);
-
-  padding: $padding-sides;
-  padding-bottom: 0;
+  padding: 0 $padding-sides;
 
   &__group {
     @include flex(center, center);
+    @include size(rem(125px), auto);
     flex-direction: column;
+
+    & + & {
+      margin-left: 10px;
+    }
   }
 
   &__control {

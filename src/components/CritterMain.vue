@@ -4,7 +4,7 @@
       :currentMonth="currentMonth"
       @changeMonth="onChangeMonth"
     />
-    <CritterSearchForm/>
+    <CritterSearchForm :search="critterSearch" @search="updateList" />
 
     <div class="container">
       <div class="container__legend">
@@ -65,21 +65,24 @@ export default Vue.extend({
     CritterList,
     CritterModal,
     CritterInfo,
-    CritterSearchForm
+    CritterSearchForm,
   },
   data() {
     return {
-      critterSearch: 'fishES',
-      critters: [] as Critter[],
+      critterSearch: { lang: 'name-EUen', hemi: 'northern' },
+      critterList: [] as Critter[],
       currentMonth: new Date().getMonth(),
       currentCritter: {} as Critter,
+      critterType: 'fish',
       isModalVisible: false,
     };
   },
+  async created(): Promise<void> {
+    this.critterList = await this.loadCritters();
+  },
   computed: {
-    critterList(): Critter[] {
-      return crittersService
-        .getCritters(this.critterSearch)
+    critterListFiltered(): Critter[] {
+      return this.critterList
         .filter(
           (critter: Critter) =>
             !critter.allYear &&
@@ -91,28 +94,38 @@ export default Vue.extend({
         });
     },
     crittersStarting(): Critter[] {
-      return this.critterList.filter(
+      return this.critterListFiltered.filter(
         (critter: Critter) => critter.state === 'starting',
       );
     },
     crittersEnding(): Critter[] {
-      return this.critterList.filter(
+      return this.critterListFiltered.filter(
         (critter: Critter) => critter.state === 'ending',
       );
     },
     crittersOnSeason(): Critter[] {
-      return this.critterList.filter(
+      return this.critterListFiltered.filter(
         (critter: Critter) => critter.state === 'onseason',
       );
     },
     crittersAllYear(): Critter[] {
-      return crittersService
-        .getCritters(this.critterSearch)
-        .filter((critter: Critter) => critter.allYear);
+      return this.critterList.filter((critter: Critter) => critter.allYear);
     },
   },
   methods: {
-    getState(critter: Critter, currentMonth: number) {
+    async loadCritters(): Promise<Critter[]> {
+      const critters = await crittersService.getCritters(
+        this.critterType,
+        this.critterSearch.lang,
+        this.critterSearch.hemi,
+      );
+      return critters;
+    },
+    async updateList(e): Promise<void> {
+      this.critterSearch = e;
+      this.critterList = await this.loadCritters();
+    },
+    getState(critter: Critter, currentMonth: number): string {
       const { startMonth } = critter;
       const { endMonth } = critter;
       return endMonth.includes(currentMonth)
@@ -121,10 +134,10 @@ export default Vue.extend({
         ? 'starting'
         : 'onseason';
     },
-    onChangeMonth(value) {
+    onChangeMonth(value): void {
       this.currentMonth = value;
     },
-    onToggleModal(value) {
+    onToggleModal(value): void {
       if (!this.isModalVisible) {
         this.currentCritter = value;
         this.isModalVisible = true;

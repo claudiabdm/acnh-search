@@ -2,30 +2,39 @@ export interface CritterApi {
   id: number;
   fileName?: string;
   name: {
-    nameEn: string,
-    nameCn: string,
-    nameDe: string,
-    nameSp: string,
-    nameFr: string,
-    nameIt: string,
-    nameJp: string,
-    nameKr: string,
-    nameNl: string,
-    nameRu: string,
+    'name-CNzh': string;
+    'name-EUde': string;
+    'name-EUen': string;
+    'name-EUes': string;
+    'name-EUfr': string;
+    'name-EUit': string;
+    'name-EUnl': string;
+    'name-EUru': string;
+    'name-JPja': string;
+    'name-KRko': string;
+    'name-TWzh': string;
+    'name-USen': string;
+    'name-USes': string;
+    'name-USfr': string;
   };
   shadow?: string;
   availability: {
-    monthNorthern: string,
-    monthSouthern: string,
-    time: string,
-    isAllDay: boolean,
-    isAllYear: boolean,
-    location: string,
-    rarity: string
+    'month-array-northern': number[];
+    'month-array-southern': number[];
+    'month-northern': string;
+    'month-southern': string;
+    time: string;
+    'time-array': number[];
+    isAllDay: boolean;
+    isAllYear: boolean;
+    location: string;
+    rarity: string;
   };
   price: number;
-  priceFlick?: number;
-  priceCj?: number;
-  catchPhrase: string;
-  museumPhrase: string;
+  'price-flick'?: number;
+  'price-cj'?: number;
+  'catch-phrase': string;
+  'museum-phrase': string;
+  'icon_uri': string;
+  'image_uri': string;
 }
