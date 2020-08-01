@@ -4,11 +4,11 @@
       <template v-slot:activator>
         <v-list-item-title class="list__title">{{ title }}</v-list-item-title>
       </template>
+      <p v-if="critterList.length === 0" class="list__text">
+        {{ critterType }} not found
+      </p>
       <v-list-item v-for="critter in critterList" :key="critter.id">
         <v-list-item-content>
-          <p v-if="critterList.length === 0" class="list__text">
-            {{ critterType }} not found
-          </p>
           <v-list-item-title
             class="list__elem"
             :class="currentCritterColor(critter)"
@@ -84,6 +84,8 @@ export default Vue.extend({
 
   &__text {
     padding: 0 16px;
+    text-transform: capitalize;
+    font-weight: $font-weight-normal;
   }
 
   &__elem {

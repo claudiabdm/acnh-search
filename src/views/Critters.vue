@@ -74,22 +74,31 @@ export default Vue.extend({
   },
   data() {
     return {
-      critterSearch: { lang: {text: 'EU-en', value:'name-EUen'}, hemi: 'northern' },
+      critterSearch: {
+        lang: { text: 'EU-en', value: 'name-EUen' },
+        hemi: 'northern',
+      },
       critterList: [] as Critter[],
       currentMonth: new Date().getMonth(),
       currentCritter: {} as Critter,
       isModalVisible: false,
       critterType: 'bugs',
+      critterTypeList: ['bugs', 'fish', 'sea'],
     };
   },
   async created(): Promise<void> {
     this.critterList = await this.loadCritters();
   },
- watch: {
+  watch: {
     async $route(to: Route, from: Route) {
-      this.critterType = to.params.critterType;
-      this.critterList = await this.loadCritters();
-    }
+      const param = to.params.critterType;
+      if (this.critterTypeList.includes(param)) {
+        this.critterType = to.params.critterType;
+        this.critterList = await this.loadCritters();
+      } else {
+        this.$router.push({name: 'critters', params: {critterType: 'bugs'}});
+      }
+    },
   },
   computed: {
     critterListFiltered(): Critter[] {
@@ -170,7 +179,7 @@ export default Vue.extend({
   flex-direction: column;
   background: transparent;
   padding: 0 $padding-sides;
-  
+
   &__legend {
     @include flex(flex-start, center);
     flex-wrap: wrap;
