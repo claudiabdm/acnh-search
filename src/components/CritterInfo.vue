@@ -80,6 +80,7 @@ export default Vue.extend({
     padding: 5px;
     font-weight: $font-weight-normal;
     line-height: 1.25;
+    margin: 0;
   }
 
   &__property {

@@ -94,3 +94,23 @@ $lg: 1023px;
 //     --icon-filter-selected: hue-rotate(-180deg) invert(1) opacity(1);
 //   }
 // }
+
+
+// VUETIFY                      //
+// ---------------------------- //
+
+$color-pack: false;
+
+$body-font-family: $font-family-primary;
+$heading-font-family: $body-font-family;
+
+$kbd-color: var(--body-color);
+$kbd-background-color: var(--body-bg);
+$code-color: var(--body-color);
+$code-background-color: var(--body-bg);
+
+$expansion-panel-content-padding: 0;
+$color-pack: false;
+$list-item-content-padding: 6px 0;
+
+$icon-size: 28px;

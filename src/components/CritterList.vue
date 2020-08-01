@@ -1,21 +1,25 @@
 <template>
-  <md-list-item class="list" md-expand :md-ripple="false">
-    <h2 class="list__title">{{ title }}</h2>
-    <md-list slot="md-expand">
-      <p v-if="critterList.length === 0" class="list__text">
-        {{ critterType }} not found
-      </p>
-      <md-list-item v-for="critter in critterList" :key="critter.id">
-        <span
-          class="list__elem"
-          :class="currentCritterColor(critter)"
-          @click="onSelectCritter(critter)"
-        >
-          {{ critter.name }}
-        </span>
-      </md-list-item>
-    </md-list>
-  </md-list-item>
+  <v-list class="list" :flat="true">
+    <v-list-group :ripple="false">
+      <template v-slot:activator>
+        <v-list-item-title class="list__title">{{ title }}</v-list-item-title>
+      </template>
+      <v-list-item v-for="critter in critterList" :key="critter.id">
+        <v-list-item-content>
+          <p v-if="critterList.length === 0" class="list__text">
+            {{ critterType }} not found
+          </p>
+          <v-list-item-title
+            class="list__elem"
+            :class="currentCritterColor(critter)"
+            @click="onSelectCritter(critter)"
+          >
+            {{ critter.name }}
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list-group>
+  </v-list>
 </template>
 
 <script lang="ts">
@@ -45,8 +49,6 @@ export default Vue.extend({
     },
     currentCritterColor(critter) {
       switch (critter.rarity) {
-        case 'Common':
-          return 'list__elem--common';
         case 'Uncommon':
           return 'list__elem--uncommon';
         case 'Rare':
@@ -54,7 +56,7 @@ export default Vue.extend({
         case 'Ultra-rare':
           return 'list__elem--ultra-rare';
         default:
-          return '';
+          return 'list__elem--common';
       }
     },
   },
@@ -66,11 +68,14 @@ export default Vue.extend({
 @import '@/styles/mixins/_mixins.scss';
 
 .list {
+  height: max-content;
   background-color: var(--tertiary);
-  border-radius: 20px;
+  border-radius: rem(20px);
   box-shadow: $box-shadow-sharpen;
+  padding: 0;
 
   &__title {
+    background-color: var(--tertiary);
     color: var(--body-color);
     font-size: rem(20px);
     font-weight: 600;
@@ -84,15 +89,16 @@ export default Vue.extend({
   &__elem {
     @include size(100%, rem(30px));
     @include flex(center, flex-start);
-    font-size: rem(13px);
+    font-size: rem(14px);
     font-weight: $font-weight-normal;
     text-transform: capitalize;
     transition: font-size 0.15s linear;
     will-change: font-size;
+    padding: 0;
 
     &:hover {
       cursor: pointer;
-      font-size: rem(15px);
+      font-size: rem(16px);
     }
 
     &--common {
@@ -111,5 +117,9 @@ export default Vue.extend({
       color: $secondary;
     }
   }
+}
+
+.v-sheet.v-list:not(.v-sheet--outlined) {
+  box-shadow: $box-shadow-sharpen;
 }
 </style>

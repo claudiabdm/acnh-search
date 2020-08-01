@@ -25,19 +25,4 @@
 // ---------------------------- //
 @import 'ui/button';
 
-// VUE MATERIAL                 //
-// ---------------------------- //
-// Expansion list
-.md-list {
-  &-item {
-    height: fit-content;
-    &-content {
-      @include flex(center, space-between);
-      min-height: 0;
-    }
-  }
-  &-expand-icon {
-    @include size(rem(36px), rem(36px));
-    fill: var(--body-color);
-  }
-}
+

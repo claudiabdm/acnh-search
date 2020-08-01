@@ -15,6 +15,7 @@ const routes: Array<RouteConfig> = [
 ];
 
 const router = new VueRouter({
+  base: process.env.BASE_URL,
   routes,
   linkActiveClass: 'navbar__link--active',
 });

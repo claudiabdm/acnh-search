@@ -1,34 +1,36 @@
 <template>
   <div class="form">
     <div class="form__group">
-      <label for="language" class="form__label">
-        Language
-      </label>
-      <select
-        id="language"
-        :value="langVal"
-        @input="updateSearch"
-        class="form__control"
-      >
-        <option v-for="lang in languages" :key="lang" :value="lang">
-          {{ `${lang.slice(5, -2)}-${lang.slice(-2)}` }}
-        </option>
-      </select>
+      <v-select
+        :items="langObj"
+        :item-text="langObj.text"
+        :item-value="langObj.value"
+        append-icon="mdi-translate"
+        filled
+        rounded
+        dense
+        label="Language"
+        :value="this.search.lang.value"
+        @input="updateLang"
+        class="form__text"
+        item-color="accent"
+        background-color="secondary"
+        color="primary"
+      ></v-select>
     </div>
     <div class="form__group">
-      <label for="hemisphere" class="form__label">
-        Hemisphere
-      </label>
-      <select
-        id="hemisphere"
+      <v-select
+        :items="hemispheres"
+        append-icon="mdi-map-marker-circle"
+        filled
+        rounded
+        dense
+        label="Hemisphere"
         :value="hemiVal"
-        @input="updateSearch"
-        class="form__control"
-      >
-        <option v-for="hemi in hemispheres" :key="hemi" :value="hemi">
-          {{ hemi }}
-        </option>
-      </select>
+        @input="updateHemi"
+        item-color="accent"
+        background-color="secondary"
+      ></v-select>
     </div>
   </div>
 </template>
@@ -47,8 +49,8 @@ export default Vue.extend({
     return {
       languages: [
         'name-CNzh',
-        'name-EUde',
         'name-EUen',
+        'name-EUde',
         'name-EUes',
         'name-EUfr',
         'name-EUit',
@@ -66,19 +68,37 @@ export default Vue.extend({
   },
   computed: {
     langVal(): string {
-      return this.search.lang;
+      return this.search.lang.text;
     },
     hemiVal(): string {
       return this.search.hemi;
     },
+    langObj(): { value: string; text: string }[] {
+      const obj: { value: string; text: string }[] = [];
+      this.languages.forEach(name =>
+        obj.push({
+          value: name,
+          text: `${name.slice(5, 7)}-${name.slice(-2)}`,
+        }),
+      );
+      return obj;
+    },
   },
   methods: {
-    updateSearch(e) {
+    updateLang(e) {
       const updatedValue = {
-        lang: e.target.id === 'language' ? e.target.value : this.langVal,
-        hemi: e.target.id === 'hemisphere' ? e.target.value : this.hemiVal,
+        lang: {
+          value: e,
+          text: `${e.slice(5, 7)}-${e.slice(-2)}`,
+        },
       };
-      this.$emit('search', updatedValue);
+      this.$emit('search', { ...this.search, ...updatedValue });
+    },
+    updateHemi(e) {
+      const updatedValue = {
+        hemi: e,
+      };
+      this.$emit('search', { ...this.search, ...updatedValue });
     },
   },
 });
@@ -91,13 +111,11 @@ export default Vue.extend({
 .form {
   @include flex(center, center);
   @include size(auto, auto);
-  padding: 0 $padding-sides;
+  padding: 10px $padding-sides;
+  background: transparent;
 
   &__group {
-    @include flex(center, center);
-    @include size(rem(125px), auto);
-    flex-direction: column;
-
+    @include size(rem(320px), auto);
     & + & {
       margin-left: 10px;
     }
@@ -108,5 +126,25 @@ export default Vue.extend({
     font-size: rem(18px);
     margin-top: 10px;
   }
+
+  &__text {
+    color: var(--body-color);
+  }
+}
+
+// .form__text .theme--light.v-select.v-select__selection--comma {
+//   color: var(--body-color);
+// }
+
+.theme--light.v-application {
+  color: var(--body-color);
+}
+
+.theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+  color: var(--body-color);
+}
+.theme--light.v-sheet {
+  background-color: var(--tertiary);
+  color: var(--body-color);
 }
 </style>

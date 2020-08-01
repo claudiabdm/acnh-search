@@ -1,6 +1,7 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production'
-    ? '/acnh-vue/'
-    : '/',
-  assetsDir: './assets'
+  "publicPath": "/",
+  "assetsDir": "./assets",
+  "transpileDependencies": [
+    "vuetify"
+  ]
 }

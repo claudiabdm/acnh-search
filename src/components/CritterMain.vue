@@ -13,7 +13,7 @@
         <p class="container__elem container__elem--rare">Rare</p>
         <p class="container__elem container__elem--ultra-rare">Ultra-rare</p>
       </div>
-      <md-list :md-ripple="false" class="container__lists">
+      <div class="container__lists">
         <CritterList
           title="Dissapears"
           @selectCritter="onToggleModal"
@@ -38,7 +38,7 @@
           :critterList="crittersAllYear"
           :critterType="critterType"
         />
-      </md-list>
+      </div>
     </div>
 
     <CritterModal
@@ -79,7 +79,7 @@ export default Vue.extend({
   },
   data() {
     return {
-      critterSearch: { lang: 'name-EUen', hemi: 'northern' },
+      critterSearch: { lang: {text: 'EU-en', value:'name-EUen'}, hemi: 'northern' },
       critterList: [] as Critter[],
       currentMonth: new Date().getMonth(),
       currentCritter: {} as Critter,
@@ -125,7 +125,7 @@ export default Vue.extend({
     async loadCritters(): Promise<Critter[]> {
       const critters = await crittersService.getCritters(
         this.critterType,
-        this.critterSearch.lang,
+        this.critterSearch.lang.value,
         this.critterSearch.hemi,
       );
       return critters;
@@ -167,12 +167,12 @@ export default Vue.extend({
   @include flex(center, center);
   flex-direction: column;
   background: transparent;
+  padding: 0 $padding-sides;
   
   &__legend {
     @include flex(flex-start, center);
     flex-wrap: wrap;
     max-width: rem(375px);
-    margin: 20px $padding-sides 10px;
     border-radius: 20px;
     padding: 10px;
     background-color: var(--tertiary);
@@ -185,13 +185,14 @@ export default Vue.extend({
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: rem(20px);
+    gap: rem(10px);
     align-content: center;
-    padding: $padding-sides;
+    margin: 20px 0;
+    padding: 0;
   }
 
   &__elem {
-
+    margin: 0;
     & + &:not(.list__elem) {
       margin-left: 10px;
     }

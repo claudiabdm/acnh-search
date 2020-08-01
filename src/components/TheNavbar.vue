@@ -50,13 +50,13 @@ export default Vue.extend({
 @import '@/styles/mixins/_mixins.scss';
 
 .side-menu {
-  background-color: rgba($color: $primary, $alpha: 0.5);
+  width: 0;
   &__title {
     font-size: 0;
   }
   @media screen and (min-width: $md) {
-    @include size(max-content, 100vh);
-    width: $navbar-width-desktop;
+    @include size($navbar-width-desktop, 100vh);
+    background-color: rgba($color: $primary, $alpha: 0.5);
     box-shadow: $box-shadow-sharpen-right;
     &__title {
       color: var(--body-bg);
