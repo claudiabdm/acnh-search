@@ -1,5 +1,5 @@
 <template>
-  <CritterMain :critterType="'sea-creature'"/>
+  <CritterMain :critterType="'sea'"/>
 </template>
 
 <script lang="ts">

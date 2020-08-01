@@ -84,13 +84,15 @@ export default Vue.extend({
   &__elem {
     @include size(100%, rem(30px));
     @include flex(center, flex-start);
-    transition: font-size 0.1s linear;
+    font-size: rem(13px);
     font-weight: $font-weight-normal;
     text-transform: capitalize;
+    transition: font-size 0.15s linear;
+    will-change: font-size;
 
     &:hover {
       cursor: pointer;
-      font-size: rem(18px);
+      font-size: rem(15px);
     }
 
     &--common {

@@ -19,8 +19,8 @@ export default {
 
 .layout {
   @include size(100vw, 100vh);
-  overflow: hidden;
   background: transparent;
+  overflow: hidden;
 
   &__main {
     @include size(100%, 100%);

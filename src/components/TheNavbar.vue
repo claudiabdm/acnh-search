@@ -59,7 +59,7 @@ export default Vue.extend({
     width: $navbar-width-desktop;
     box-shadow: $box-shadow-sharpen-right;
     &__title {
-      color: var(--tertiary);
+      color: var(--body-bg);
       padding: 20px;
       font-size: rem(32px);
       font-family: 'AcnhTitle';
@@ -75,12 +75,12 @@ export default Vue.extend({
   padding: 20px;
   background-color: rgba($color: $primary, $alpha: 0.5);
   backdrop-filter: blur(8px);
-  z-index: 1000;
+  z-index: 10;
   font-size: 0;
 
   &__link {
     @include flex(center, center);
-    color: var(--tertiary);
+    color: var(--body-bg);
     font-family: $font-secondary;
     transition: color ease-in-out 0.15s;
     will-change: color;
@@ -98,7 +98,7 @@ export default Vue.extend({
 
   &__icon {
     @include size($navbar-height / 1.5);
-    color: var(--tertiary);
+    color: var(--body-bg);
     transition: color ease-in-out 0.15s;
     will-change: color;
   }

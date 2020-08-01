@@ -167,7 +167,7 @@ export default Vue.extend({
   @include flex(center, center);
   flex-direction: column;
   background: transparent;
-
+  
   &__legend {
     @include flex(flex-start, center);
     flex-wrap: wrap;

@@ -69,7 +69,7 @@ const getCritters = async function(
     `${process.env.VUE_APP_API_URL}/${critterType}`,
   );
   const critterList: CritterApi[] = response.data;
-  buyer = critterType === 'bugs' ? 'price-flick' : 'price-cj';
+  buyer = critterType === 'bugs' ? 'price-flick' : critterType === 'fish' ? 'price-cj' : '';
   return critterList.map(critter =>
     createCritter(critter, lang, buyer, critterType, hemisphere),
   );
