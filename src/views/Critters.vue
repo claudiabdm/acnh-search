@@ -61,6 +61,7 @@ import CritterList from '@/components/CritterList.vue';
 import CritterInfo from '@/components/CritterInfo.vue';
 import { Critter } from '@/shared/models/critter';
 import { crittersService } from '@/shared/critters.service';
+import { Route } from 'vue-router';
 
 export default Vue.extend({
   name: 'CritterMain',
@@ -71,12 +72,6 @@ export default Vue.extend({
     CritterInfo,
     CritterSearchForm,
   },
-  props: {
-    critterType: {
-      type: String,
-      default: 'fish',
-    },
-  },
   data() {
     return {
       critterSearch: { lang: {text: 'EU-en', value:'name-EUen'}, hemi: 'northern' },
@@ -84,10 +79,17 @@ export default Vue.extend({
       currentMonth: new Date().getMonth(),
       currentCritter: {} as Critter,
       isModalVisible: false,
+      critterType: 'bugs',
     };
   },
   async created(): Promise<void> {
     this.critterList = await this.loadCritters();
+  },
+ watch: {
+    async $route(to: Route, from: Route) {
+      this.critterType = to.params.critterType;
+      this.critterList = await this.loadCritters();
+    }
   },
   computed: {
     critterListFiltered(): Critter[] {

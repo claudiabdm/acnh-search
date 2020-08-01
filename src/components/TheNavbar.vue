@@ -9,7 +9,7 @@
         :to="link.path"
       >
         <svg class="navbar__icon">
-          <use :href="`assets/svgs/sprite.svg#${link.name}`" />
+          <use :href="`/assets/svgs/sprite.svg#${link.name}`" />
         </svg>
         {{ link.name }}
       </router-link>
@@ -25,15 +25,15 @@ export default Vue.extend({
       links: [
         {
           name: 'bugs',
-          path: '/bugs',
+          path: '/critters/bugs',
         },
         {
           name: 'fish',
-          path: '/fish',
+          path: '/critters/fish',
         },
         {
-          name: 'sea-creature',
-          path: '/sea-creature',
+          name: 'sea',
+          path: '/critters/sea',
         },
         {
           name: 'search',
