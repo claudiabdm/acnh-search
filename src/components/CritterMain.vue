@@ -172,10 +172,12 @@ export default Vue.extend({
     @include flex(flex-start, center);
     flex-wrap: wrap;
     max-width: rem(375px);
-    margin: 10px $padding-sides;
+    margin: 20px $padding-sides 10px;
     border-radius: 20px;
     padding: 10px;
     background-color: var(--tertiary);
+    font-size: rem(12px);
+    font-weight: $font-weight-normal;
     box-shadow: $box-shadow-sharpen;
   }
 
@@ -189,8 +191,6 @@ export default Vue.extend({
   }
 
   &__elem {
-    font-size: 1rem;
-    font-weight: $font-weight-normal;
 
     & + &:not(.list__elem) {
       margin-left: 10px;
