@@ -8,7 +8,7 @@
     >
       Previous Month
       <svg class="icon icon--sm">
-        <use href="/assets/svgs/sprite.svg#prev-arrow" />
+        <use href="assets/svgs/sprite.svg#prev-arrow" />
       </svg>
     </button>
     <h2 class="month-navbar__title">{{ month | formatMonth }}</h2>
@@ -20,7 +20,7 @@
     >
       Next Month
       <svg class="icon icon--sm">
-        <use href="/assets/svgs/sprite.svg#next-arrow" />
+        <use href="assets/svgs/sprite.svg#next-arrow" />
       </svg>
     </button>
   </nav>

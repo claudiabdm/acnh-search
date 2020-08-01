@@ -9,7 +9,7 @@
         :to="link.path"
       >
         <svg class="navbar__icon">
-          <use :href="`/assets/svgs/sprite.svg#${link.name}`" />
+          <use :href="`assets/svgs/sprite.svg#${link.name}`" />
         </svg>
         {{ link.name }}
       </router-link>

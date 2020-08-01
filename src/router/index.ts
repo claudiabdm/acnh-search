@@ -6,7 +6,6 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   { path: '/', redirect: '/critters/bugs'},
-  { path: '*', redirect: '/critters/bugs'},
   { path: '/search', name: 'search', component: Search },
   { path: '/critters/:critterType', name: 'critters', component: Critters },
 ];
