@@ -18,21 +18,25 @@
           title="Dissapears"
           @selectCritter="onToggleModal"
           :critterList="crittersEnding"
+          :critterType="critterType"
         />
         <CritterList
           title="Appears"
           @selectCritter="onToggleModal"
           :critterList="crittersStarting"
+          :critterType="critterType"
         />
         <CritterList
           title="On Season"
           @selectCritter="onToggleModal"
           :critterList="crittersOnSeason"
+          :critterType="critterType"
         />
         <CritterList
           title="All Year"
           @selectCritter="onToggleModal"
           :critterList="crittersAllYear"
+          :critterType="critterType"
         />
       </md-list>
     </div>
@@ -67,13 +71,18 @@ export default Vue.extend({
     CritterInfo,
     CritterSearchForm,
   },
+  props: {
+    critterType: {
+      type: String,
+      default: 'fish',
+    },
+  },
   data() {
     return {
       critterSearch: { lang: 'name-EUen', hemi: 'northern' },
       critterList: [] as Critter[],
       currentMonth: new Date().getMonth(),
       currentCritter: {} as Critter,
-      critterType: 'fish',
       isModalVisible: false,
     };
   },

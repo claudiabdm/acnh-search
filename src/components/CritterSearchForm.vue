@@ -105,7 +105,6 @@ export default Vue.extend({
 
   &__control {
     @include size(100%, 1.563rem);
-
     font-size: rem(18px);
     margin-top: 10px;
   }

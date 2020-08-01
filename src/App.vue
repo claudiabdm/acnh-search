@@ -1,18 +1,16 @@
 <template>
   <div class="layout">
-    <CritterMain class="layout__main" />
+    <router-view class="layout__main"></router-view>
     <TheNavbar class="layout__navbar"/>
   </div>
 </template>
 
 <script>
 import TheNavbar from '@/components/TheNavbar.vue';
-// import TheFooter from '@/components/TheFooter.vue';
-import CritterMain from '@/components/CritterMain.vue';
 
 export default {
   name: 'acnh-search',
-  components: { TheNavbar, CritterMain },
+  components: { TheNavbar },
 };
 </script>
 

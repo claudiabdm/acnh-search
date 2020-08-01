@@ -82,15 +82,25 @@ export default Vue.extend({
     @include flex(center, center);
     color: var(--tertiary);
     font-family: $font-secondary;
+    transition: color ease-in-out 0.15s;
+    will-change: color;
 
     &:hover {
       text-decoration: none;
+    }
+    &--active {
+      color: var(--body-color);
+      .navbar__icon {
+        color: var(--body-color);
+      }
     }
   }
 
   &__icon {
     @include size($navbar-height / 1.5);
     color: var(--tertiary);
+    transition: color ease-in-out 0.15s;
+    will-change: color;
   }
 
   @media screen and (min-width: $md) {

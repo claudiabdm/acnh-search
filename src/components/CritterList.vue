@@ -1,44 +1,46 @@
 <template>
-    <md-list-item class="list" md-expand :md-ripple="false">
-      <h2 class="list__title">{{ title }}</h2>
-      <md-list slot="md-expand">
-        <p v-if="critterList.length === 0" class="list__text">
-          Critters not found
-        </p>
-        <md-list-item v-for="critter in critterList" :key="critter.id">
-          <span
-            class="list__elem"
-            :class="currentCritterColor(critter)"
-            @click="onSelectCritter(critter)"
-          >
-            {{ critter.name }}
-          </span>
-        </md-list-item>
-      </md-list>
-    </md-list-item>
+  <md-list-item class="list" md-expand :md-ripple="false">
+    <h2 class="list__title">{{ title }}</h2>
+    <md-list slot="md-expand">
+      <p v-if="critterList.length === 0" class="list__text">
+        {{ critterType }} not found
+      </p>
+      <md-list-item v-for="critter in critterList" :key="critter.id">
+        <span
+          class="list__elem"
+          :class="currentCritterColor(critter)"
+          @click="onSelectCritter(critter)"
+        >
+          {{ critter.name }}
+        </span>
+      </md-list-item>
+    </md-list>
+  </md-list-item>
 </template>
 
-<script>
-// Deactivate ts until find solution to import vue material
-// import { Critter } from '../shared/models/critter';
+<script lang="ts">
+import { Critter } from '@/shared/models/critter';
 import Vue from 'vue';
 
 export default Vue.extend({
   name: 'CritterList',
   props: {
+    critterType: {
+      type: String,
+      required: true,
+      default: '',
+    },
     critterList: {
       type: Array,
       required: true,
-      default: () => [],
     },
     title: {
       type: String,
       required: true,
-      default: () => '',
     },
   },
   methods: {
-    onSelectCritter(critter) {
+    onSelectCritter(critter: Critter) {
       this.$emit('selectCritter', critter);
     },
     currentCritterColor(critter) {
