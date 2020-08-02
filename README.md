@@ -1,34 +1,6 @@
-# acnh-vue
+# AcnhSearch
 
-## Project setup
-```
-npm install
-```
+An app to search critter info for the game Animal Crossing: New Horizons.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+AcnhSearch is a progressive web app build on Vue. 
+Data is fetched from the ACNH API (https://github.com/alexislours/ACNHAPI).
