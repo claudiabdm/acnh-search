@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <form class="form">
+  <div class="message">
+    Working on it!
+    <!-- <form class="form">
       <div class="form__group">
         <v-select
           v-model="chips"
@@ -32,19 +33,19 @@
           </template>
         </v-select>
       </div>
-    </form>
-    <div class="container">
+    </form> -->
+    <!-- <div class="container">
       <CritterList :critterType="'bugs'" title="bugs" :critterList="[]" />
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import CritterList from '@/components/CritterList.vue';
+// import CritterList from '@/components/CritterList.vue';
 
 export default Vue.extend({
-  components: { CritterList },
+  // components: { CritterList },
   data() {
     console.log(this.$vuetify.icons.values.bugs);
     return {
@@ -78,15 +79,15 @@ export default Vue.extend({
   font-size: 2rem;
 }
 
-.theme--light.v-application {
-  color: var(--body-color);
-}
+// .theme--light.v-application {
+//   color: var(--body-color);
+// }
 
-.theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
-  color: var(--body-color);
-}
-.theme--light.v-sheet {
-  background-color: var(--tertiary);
-  color: var(--body-color);
-}
+// .theme--light.v-list-item:not(.v-list-item--active):not(.v-list-item--disabled) {
+//   color: var(--body-color);
+// }
+// .theme--light.v-sheet {
+//   background-color: var(--tertiary);
+//   color: var(--body-color);
+// }
 </style>
