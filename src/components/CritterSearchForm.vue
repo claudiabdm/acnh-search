@@ -108,29 +108,6 @@ export default Vue.extend({
 @import '@/styles/global/_variables.scss';
 @import '@/styles/mixins/_mixins.scss';
 
-.form {
-  @include flex(center, center);
-  @include size(auto, auto);
-  padding: 10px $padding-sides;
-  background: transparent;
-
-  &__group {
-    @include size(rem(320px), auto);
-    & + & {
-      margin-left: 10px;
-    }
-  }
-
-  &__control {
-    @include size(100%, 1.563rem);
-    font-size: rem(18px);
-    margin-top: 10px;
-  }
-
-  &__text {
-    color: var(--body-color);
-  }
-}
 
 // .form__text .theme--light.v-select.v-select__selection--comma {
 //   color: var(--body-color);

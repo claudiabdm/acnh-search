@@ -1,101 +1,8 @@
 // ------------------------------------------
-// VARIABLES
+// VARIABLES VUETIFY
 // ------------------------------------------
-
-// Color palette
-// -----------------------------------------
-
-// Colors
-$primary: #49dbc6;
-$secondary:#ea526f;
-$tertiary: #fffae6;
-$base: #867968;
-$success: #72e67d;
-$brown-100: #ba9461;
-
-// Grey
-$grey-100: #c4c4c4;
-$grey-200: #525252;
-$grey-300: #333;
-$grey-400: #202020;
-
-
-// Gradients
-
-$gradient: linear-gradient(0, $primary 0%, $secondary 100%);
-
-// Scaffolding
-// ------------------------------------------
-$header-height: 60px;
-$navbar-height: 50px;
-
-$navbar-width-desktop: 20vw;
-
-
-$link-color: $secondary;
-$link-decoration: none;
-$link-hover: none;
-
-$padding-sides: 30px;
-
-$border: 1px solid $grey-100;
-
-$box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.075);
-
-$box-shadow-sharpen: 0 3px 1px 1px rgba(0, 0, 0, 0.05);
-$box-shadow-sharpen-up: 0 -3px 1px 1px rgba(0, 0, 0, 0.05);
-$box-shadow-sharpen-right: 3px 0px 1px 1px rgba(0, 0, 0, 0.05);
-
-// Font
-// ------------------------------------------
-
-$font-primary: "AcnhDialog";
-$font-secondary: "AcnhTitle";
-$font-family-primary: $font-primary,
-Arial,
-sans-serif;
-$font-family-secondary: $font-primary,
-serif;
-
-$font-size-body: 16px;
-$font-size-base: 1rem;
-
-$font-weight-light: 300;
-$font-weight-normal: 400;
-$font-weight-medium: 500;
-$font-weight-bold: 700;
-
-
-// Breakpoints
-// ------------------------------------------
-$md: 768px;
-$lg: 1023px;
-
-
-// Light and Dark theme
-// ------------------------------------------
-
-:root {
-  --body-color: #{$base};
-  --body-bg: #fff3c5;
-  --tertiary: #{$tertiary};
-  --hover-bg: #{darken($tertiary, 2.5%)};
-  --icon-filter: grayscale(1);
-  --icon-filter-selected: none;
-}
-
-// @media (prefers-color-scheme: dark) {
-//   :root {
-//     --body-color: #fff;
-//     --body-bg:  #{$grey-400};
-//     --tertiary: #{$grey-200};
-//     --hover-bg: #{darken($grey-300, 2.5%)};
-//     --icon-filter: grayscale(1) invert(1) opacity(0.8);
-//     --icon-filter-selected: hue-rotate(-180deg) invert(1) opacity(1);
-//   }
-// }
-
-
+@import '../styles/global/variables';
+@import '../styles/mixins/mixins';
 // VUETIFY                      //
 // ---------------------------- //
 
@@ -113,4 +20,10 @@ $expansion-panel-content-padding: 0;
 $color-pack: false;
 $list-item-content-padding: 6px 0;
 
+$select-selections-padding-top: 30px;
+
 $icon-size: 28px;
+
+$sheet-border-radius: rem(20px);
+$list-border-radius: rem(20px);
+$list-padding: 0;

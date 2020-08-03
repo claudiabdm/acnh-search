@@ -1,0 +1,23 @@
+.form {
+  @include flex(flex-start, center);
+  @include size(100%, auto);
+  padding: 10px $padding-sides;
+  background: transparent;
+
+  &__group {
+    @include size(rem(320px), auto);
+    & + & {
+      margin-left: 10px;
+    }
+  }
+
+  &__control {
+    @include size(100%, 1.563rem);
+    font-size: rem(18px);
+    margin-top: 10px;
+  }
+
+  &__text {
+    color: var(--body-color);
+  }
+}

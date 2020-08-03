@@ -169,60 +169,9 @@ export default Vue.extend({
   },
 });
 </script>
-
 <style lang="scss" scoped>
 @import '@/styles/global/_variables.scss';
 @import '@/styles/mixins/_mixins.scss';
-
-.container {
-  @include flex(center, center);
-  flex-direction: column;
-  background: transparent;
-  padding: 0 $padding-sides;
-
-  &__legend {
-    @include flex(flex-start, center);
-    flex-wrap: wrap;
-    max-width: rem(375px);
-    border-radius: 20px;
-    padding: 10px;
-    background-color: var(--tertiary);
-    font-size: rem(12px);
-    font-weight: $font-weight-normal;
-    box-shadow: $box-shadow-sharpen;
-  }
-
-  &__lists {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: rem(10px);
-    align-content: center;
-    margin: 20px 0;
-    padding: 0;
-  }
-
-  &__elem {
-    margin: 0;
-    & + &:not(.list__elem) {
-      margin-left: 10px;
-    }
-
-    &--common {
-      color: $base;
-    }
-
-    &--uncommon {
-      color: $success;
-    }
-
-    &--rare {
-      color: $primary;
-    }
-
-    &--ultra-rare {
-      color: $secondary;
-    }
-  }
-}
+@import '@/styles/ui/_container.scss';
+@import '@/styles/ui/_form.scss';
 </style>

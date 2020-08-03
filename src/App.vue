@@ -7,21 +7,22 @@
   </v-app>
 </template>
 
-<script>
+<script lang="ts">
 import TheNavbar from '@/components/TheNavbar.vue';
+import Vue from 'vue';
 
-export default {
+export default Vue.extend({
   name: 'acnh-search',
   components: { TheNavbar },
-};
+});
 </script>
 
 <style lang="scss">
 @import '@/styles/styles.scss';
-.v-application {
-    background-color: var(--v-background-base) !important;
-}
 
+.v-application {
+  background-color: var(--v-background-base) !important;
+}
 
 .layout {
   @include size(100vw, 100vh);
