@@ -47,7 +47,6 @@ import Vue from 'vue';
 export default Vue.extend({
   // components: { CritterList },
   data() {
-    console.log(this.$vuetify.icons.values.bugs);
     return {
       critterTypeList: [
         { text: 'Bugs', value: 'bugs', icon: '$vuetify.bugs' },
