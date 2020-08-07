@@ -69,12 +69,27 @@ const getCritters = async function(
     `${process.env.VUE_APP_API_URL}/${critterType}`,
   );
   const critterList: CritterApi[] = response.data;
-  buyer = critterType === 'bugs' ? 'price-flick' : critterType === 'fish' ? 'price-cj' : '';
+  buyer =
+    critterType === 'bugs'
+      ? 'price-flick'
+      : critterType === 'fish'
+      ? 'price-cj'
+      : '';
   return critterList.map(critter =>
     createCritter(critter, lang, buyer, critterType, hemisphere),
   );
 };
 
+const loadCritters = async function(
+  critterType: string,
+  lang: string,
+  hemi: string,
+): Promise<Critter[]> {
+  const critters = await crittersService.getCritters(critterType, lang, hemi);
+  return critters;
+};
+
 export const crittersService = {
   getCritters,
+  loadCritters,
 };

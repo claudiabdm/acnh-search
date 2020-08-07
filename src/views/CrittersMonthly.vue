@@ -97,14 +97,22 @@ export default Vue.extend({
     };
   },
   async created(): Promise<void> {
-    this.critterList = await this.loadCritters();
+    this.critterList = await crittersService.loadCritters(
+      this.critterType,
+      this.critterSearch.lang.value,
+      this.critterSearch.hemi,
+    );
   },
   watch: {
     async $route(to: Route, from: Route) {
       const param = to.params.critterType;
       if (this.critterTypeList.includes(param)) {
         this.critterType = to.params.critterType;
-        this.critterList = await this.loadCritters();
+        this.critterList = await crittersService.loadCritters(
+          this.critterType,
+          this.critterSearch.lang.value,
+          this.critterSearch.hemi,
+        );
       } else {
         this.$router.push({
           name: 'critters',
@@ -146,17 +154,13 @@ export default Vue.extend({
     },
   },
   methods: {
-    async loadCritters(): Promise<Critter[]> {
-      const critters = await crittersService.getCritters(
+    async updateList(e): Promise<void> {
+      this.critterSearch = e;
+      this.critterList = await crittersService.loadCritters(
         this.critterType,
         this.critterSearch.lang.value,
         this.critterSearch.hemi,
       );
-      return critters;
-    },
-    async updateList(e): Promise<void> {
-      this.critterSearch = e;
-      this.critterList = await this.loadCritters();
     },
     getState(critter: Critter, currentMonth: number): string {
       const { startMonth } = critter;
