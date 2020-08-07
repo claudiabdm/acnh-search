@@ -1,9 +1,6 @@
 <template>
   <div class="critter">
-    <img
-      :src="currentCritter.img"
-      class="critter__img"
-    />
+    <img :src="currentCritter.img" class="critter__img" />
     <template v-if="!currentCritter.allYear">
       <p class="critter__text">
         <span class="critter__property">Start Month:</span>
@@ -22,21 +19,21 @@
     <p class="critter__text">
       <span class="critter__property">Time:</span> {{ currentCritter.time }}
     </p>
-    <p class="critter__text">
+    <p class="critter__text"  v-if="currentCritter.location">
       <span class="critter__property">Location:</span>
       {{ currentCritter.location }}
     </p>
-    <p class="critter__text">
+    <p class="critter__text" v-if="currentCritter.rarity">
       <span class="critter__property">Rarity:</span> {{ currentCritter.rarity }}
     </p>
-    <p class="critter__text">
+    <p class="critter__text" v-if="currentCritter.shadow">
       <span class="critter__property">Shadow:</span> {{ currentCritter.shadow }}
     </p>
     <p class="critter__text">
       <span class="critter__property">Price:</span>
       {{ currentCritter.price }} bells
     </p>
-    <p class="critter__text">
+    <p class="critter__text" v-if="buyerType">
       <span class="critter__property">Price {{ buyerType }}:</span>
       {{ currentCritter.priceCjFlick }} bells
     </p>
@@ -53,13 +50,15 @@ export default Vue.extend({
   },
   computed: {
     buyerType(): string {
-    if (this.currentCritter.type === 'fish') {
-      return 'Cj';
-    } else {
-      return 'Flick';
-    }
-  }
-  }
+      if (this.currentCritter.type === 'fish') {
+        return 'Cj';
+      }
+      if (this.currentCritter.type === 'bugs') {
+        return 'Flick';
+      }
+      return '';
+    },
+  },
 });
 </script>
 
