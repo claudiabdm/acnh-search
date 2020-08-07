@@ -92,7 +92,7 @@ export default Vue.extend({
       },
       critterList: [] as Critter[],
       currentMonth: new Date().getMonth(),
-      critterType: 'bugs',
+      critterType: this.$route.params.critterType,
       critterTypeList: ['bugs', 'fish', 'sea'],
     };
   },
