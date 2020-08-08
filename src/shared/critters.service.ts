@@ -85,7 +85,7 @@ const loadCritters = async function(
   lang: string,
   hemi: string,
 ): Promise<Critter[]> {
-  const critters = await crittersService.getCritters(critterType, lang, hemi);
+  const critters = await getCritters(critterType, lang, hemi);
   return critters;
 };
 
