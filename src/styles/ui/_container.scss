@@ -2,7 +2,6 @@
   @include flex(center, center);
   flex-direction: column;
   background: transparent;
-  padding: 10px 0;
   &__legend {
     @include flex(flex-start, center);
     flex-wrap: wrap;

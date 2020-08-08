@@ -63,9 +63,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/global/_variables.scss';
-@import '@/styles/mixins/_mixins.scss';
-
 .critter {
   @include flex(flex-start, flex-start);
   flex-direction: column;

@@ -102,8 +102,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/global/_variables.scss';
-@import '@/styles/mixins/_mixins.scss';
+ 
+ 
 @import '@/styles/ui/_form.scss';
 
 .theme--light.v-application {

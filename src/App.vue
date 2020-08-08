@@ -30,9 +30,8 @@ export default Vue.extend({
 }
 
 .layout {
-  @include size(100vw, 100%);
+  @include size(100%, 100%);
   background: transparent;
-  overflow: hidden;
   background-image: radial-gradient(var(--tertiary) 10%, transparent 10%),
     radial-gradient(var(--tertiary) 10%, transparent 10%);
   background-color: var(--body-bg);
@@ -43,17 +42,12 @@ export default Vue.extend({
   font-weight: $font-weight-bold;
   font-size: $font-size-body;
   line-height: 1;
+  overflow: hidden;
 
   &__main {
-    @include size(100%, 100%);
-    @include flex(center, flex-start);
-    flex-direction: column;
-    padding: $header-height + 10px $padding-sides $navbar-height;
+    @include size(100%, 100vh);
+    padding: $header-height + 10px $padding-sides;
     overflow: auto;
-
-    &--search {
-      padding-top: $padding-sides;
-    }
   }
 
   @media screen and (min-width: $md) {
@@ -61,7 +55,7 @@ export default Vue.extend({
     flex-direction: row-reverse;
 
     &__main {
-      width: 80vw;
+      width: 100vw - $navbar-width-desktop;
     }
   }
 }

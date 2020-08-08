@@ -4,9 +4,12 @@
       :currentMonth="currentMonth"
       @changeMonth="onChangeMonth"
     />
-    <CritterSearchForm class="form" :search="critterSearch" @search="updateList" />
-
     <div class="container">
+      <CritterSearchForm
+        class="form"
+        :search="critterSearch"
+        @search="updateList"
+      />
       <div class="container__legend">
         <p class="container__elem container__elem--common">Common</p>
         <p class="container__elem container__elem--uncommon">Uncommon</p>
@@ -178,8 +181,8 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-@import '@/styles/global/_variables.scss';
-@import '@/styles/mixins/_mixins.scss';
+ 
+ 
 @import '@/styles/ui/_container.scss';
 @import '@/styles/ui/_form.scss';
 </style>

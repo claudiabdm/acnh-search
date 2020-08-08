@@ -56,11 +56,11 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/global/_variables.scss';
-@import '@/styles/mixins/_mixins.scss';
+ 
+ 
 
 .month-navbar {
-  @include fixed($top: 0);
+  @include fixed($top: 0, $left: 0);
   @include flex(center, space-between);
   width: 100vw;
   padding: 10px;
@@ -89,6 +89,7 @@ export default Vue.extend({
 
   @media screen and (min-width: $md) {
     width: 100vw - $navbar-width-desktop;
+    left: $navbar-width-desktop;
     border-radius: 0;
   }
 }

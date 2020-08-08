@@ -4,13 +4,14 @@
       <CritterSearchForm :search="critterSearch" @search="updateSearch" />
       <div class="form__group">
         <v-select
+          v-model="types"
           :items="critterTypeList"
           :item-text="critterTypeList.text"
           :item-value="critterTypeList.text"
-          :prepend-inner-icon="critterTypeList.icon"
           :multiple="true"
           filled
           rounded
+          clearable
           label="Critter Type"
           class="form__text"
           item-color="accent"
@@ -19,7 +20,7 @@
           @change="updateCritterList($event)"
         >
           <template v-slot:selection="{ item }">
-            <v-chip color="accent" text-color="secondary">
+            <v-chip small color="accent" text-color="secondary">
               <v-icon>{{ item.icon }}</v-icon>
               <strong>{{ item.text }}</strong
               >&nbsp;
@@ -29,12 +30,14 @@
       </div>
       <div class="form__group">
         <v-select
+          v-model="rarity"
           :items="critterRarityList"
           :item-text="critterRarityList.text"
           :item-value="critterRarityList.value"
           :multiple="true"
           filled
           rounded
+          clearable
           label="Critter Rarity"
           class="form__text"
           item-color="accent"
@@ -43,7 +46,7 @@
           @change="filterByRarity($event)"
         >
           <template v-slot:selection="{ item }">
-            <v-chip :color="item.color" text-color="secondary">
+            <v-chip small :color="item.color" text-color="secondary">
               <v-icon>{{ item.icon }}</v-icon>
               <strong>{{ item.text }}</strong
               >&nbsp;
@@ -59,7 +62,7 @@
           :multiple="true"
           filled
           rounded
-          chips
+          clearable
           label="Month"
           class="form__text"
           item-color="accent"
@@ -68,7 +71,7 @@
           @change="filterByMonth($event)"
         >
           <template v-slot:selection="{ item }">
-            <v-chip color="accent" text-color="secondary">
+            <v-chip small color="accent" text-color="secondary">
               <strong>{{ item.value | formatMonth }}</strong
               >&nbsp;
             </v-chip>
@@ -82,6 +85,7 @@
           :max="max"
           :min="min"
           hide-details
+          step="100"
           class="align-center"
         >
           <template v-slot:prepend>
@@ -91,7 +95,8 @@
               hide-details
               single-line
               type="number"
-              style="width: 50px"
+              style="width: 60px"
+              @change="$set(range, 0, $event)"
             ></v-text-field>
           </template>
           <template v-slot:append>
@@ -101,7 +106,8 @@
               hide-details
               single-line
               type="number"
-              style="width: 50px"
+              style="width: 60px"
+              @change="$set(range, 1, $event)"
             ></v-text-field>
           </template>
         </v-range-slider>
@@ -167,21 +173,21 @@ export default Vue.extend({
           value: 'bugs',
           icon: '$vuetify.bugs',
           list: [] as Critter[],
-          selected: false,
+          selected: true,
         },
         {
           text: 'Fish',
           value: 'fish',
           icon: '$vuetify.fish',
           list: [] as Critter[],
-          selected: false,
+          selected: true,
         },
         {
           text: 'Sea Creatures',
           value: 'sea',
           icon: '$vuetify.seaCreature',
           list: [] as Critter[],
-          selected: false,
+          selected: true,
         },
       ],
       critterRarityList: [
@@ -210,11 +216,11 @@ export default Vue.extend({
           selected: false,
         },
       ],
+      types: ['bugs', 'fish', 'sea'],
       min: 0,
       max: 30000,
-      slider: 50,
       range: [0, 30000],
-      rarity: [''],
+      rarity: ['common', 'uncommon', 'rare', 'ultra-rare'],
       months: [
         { value: 0, text: 'January' },
         { value: 1, text: 'February' },
@@ -231,6 +237,9 @@ export default Vue.extend({
       ],
       monthsSelected: [] as number[],
     };
+  },
+  created() {
+    this.updateSearch(this.critterSearch);
   },
   computed: {
     critterTypeListFiltered(): CritterTypeObj[] {
@@ -266,7 +275,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    async updateCritterList(e): Promise<void> {
+    async updateCritterList(e: string): Promise<void> {
       this.critterTypeList.forEach(async critter => {
         if (e.includes(critter.value)) {
           critter.selected = true;
@@ -302,8 +311,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/global/_variables.scss';
-@import '@/styles/mixins/_mixins.scss';
+ 
+ 
 @import '@/styles/ui/_container.scss';
 @import '@/styles/ui/_form.scss';
 

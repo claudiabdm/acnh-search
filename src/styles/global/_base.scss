@@ -2,6 +2,7 @@
 /* BASE                         */
 /* ---------------------------- */
 body {
+  width: 100%;
   background-image: radial-gradient(var(--tertiary) 10%, transparent 10%),
     radial-gradient(var(--tertiary) 10%, transparent 10%);
   background-color: var(--body-bg);
@@ -12,6 +13,7 @@ body {
   font-weight: $font-weight-bold;
   font-size: $font-size-body;
   line-height: 1;
+  overflow: hidden;
 }
 
 a {
