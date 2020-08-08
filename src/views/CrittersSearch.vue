@@ -1,12 +1,13 @@
 <template>
   <div>
-    <form class="form form--selected">
+    <form class="form form--search">
       <CritterSearchForm :search="critterSearch" @search="updateSearch" />
       <div class="form__group">
         <v-select
           :items="critterTypeList"
           :item-text="critterTypeList.text"
-          :item-value="critterTypeList.value"
+          :item-value="critterTypeList.text"
+          :prepend-inner-icon="critterTypeList.icon"
           :multiple="true"
           filled
           rounded
@@ -26,22 +27,94 @@
           </template>
         </v-select>
       </div>
+      <div class="form__group">
+        <v-select
+          :items="critterRarityList"
+          :item-text="critterRarityList.text"
+          :item-value="critterRarityList.value"
+          :multiple="true"
+          filled
+          rounded
+          label="Critter Rarity"
+          class="form__text"
+          item-color="accent"
+          background-color="secondary"
+          color="primary"
+          @change="filterByRarity($event)"
+        >
+          <template v-slot:selection="{ item }">
+            <v-chip :color="item.color" text-color="secondary">
+              <v-icon>{{ item.icon }}</v-icon>
+              <strong>{{ item.text }}</strong
+              >&nbsp;
+            </v-chip>
+          </template>
+        </v-select>
+      </div>
+      <div class="form__group">
+        <v-select
+          :items="months"
+          :item-value="months.value"
+          :item-text="months.text"
+          :multiple="true"
+          filled
+          rounded
+          chips
+          label="Month"
+          class="form__text"
+          item-color="accent"
+          background-color="secondary"
+          color="primary"
+          @change="filterByMonth($event)"
+        >
+          <template v-slot:selection="{ item }">
+            <v-chip color="accent" text-color="secondary">
+              <strong>{{ item.value | formatMonth }}</strong
+              >&nbsp;
+            </v-chip>
+          </template>
+        </v-select>
+      </div>
+      <div class="form__group form__group--range">
+        <label class="v-label v-label--active theme--light">Bells</label>
+        <v-range-slider
+          v-model="range"
+          :max="max"
+          :min="min"
+          hide-details
+          class="align-center"
+        >
+          <template v-slot:prepend>
+            <v-text-field
+              :value="range[0]"
+              class="mt-0 pt-0"
+              hide-details
+              single-line
+              type="number"
+              style="width: 50px"
+            ></v-text-field>
+          </template>
+          <template v-slot:append>
+            <v-text-field
+              :value="range[1]"
+              class="mt-0 pt-0"
+              hide-details
+              single-line
+              type="number"
+              style="width: 50px"
+            ></v-text-field>
+          </template>
+        </v-range-slider>
+      </div>
     </form>
     <div class="container">
-      <div
-        :key="critterObj"
-        v-for="critterObj in critterTypeListFiltered"
-        class="container__lists"
-      >
-        <div :key="critter" v-for="critter in critterObj.list">
-          <CritterInfo :currentCritter="critter" />
-        </div>
+      <div class="container__lists">
         <CritterList
-          v-for="critter in critterTypeListFiltered"
-          :key="critter.value"
-          :critterType="critter.value"
-          :title="critter.text"
-          :critterList="critter.list"
+          v-for="critterObj in critterTypeListFiltered"
+          :key="critterObj.value"
+          :critterType="critterObj.value"
+          :title="critterObj.text"
+          :critterList="critterObj.list"
           @selectCritter="toggleCritterInfo"
         />
       </div>
@@ -104,20 +177,92 @@ export default Vue.extend({
           selected: false,
         },
         {
-          text: 'Sea',
+          text: 'Sea Creatures',
           value: 'sea',
           icon: '$vuetify.seaCreature',
           list: [] as Critter[],
           selected: false,
         },
       ],
-      currentCritter: {},
-      isModalVisible: false,
+      critterRarityList: [
+        {
+          text: 'Common',
+          value: 'common',
+          color: 'primary',
+          selected: false,
+        },
+        {
+          text: 'Uncommon',
+          value: 'uncommon',
+          color: '#72e67d',
+          selected: false,
+        },
+        {
+          text: 'Rare',
+          value: 'rare',
+          color: 'accent',
+          selected: false,
+        },
+        {
+          text: 'Ultra-Rare',
+          value: 'ultra-rare',
+          color: '#ea526f',
+          selected: false,
+        },
+      ],
+      min: 0,
+      max: 30000,
+      slider: 50,
+      range: [0, 30000],
+      rarity: [''],
+      months: [
+        { value: 0, text: 'January' },
+        { value: 1, text: 'February' },
+        { value: 2, text: 'March' },
+        { value: 3, text: 'April' },
+        { value: 4, text: 'May' },
+        { value: 5, text: 'June' },
+        { value: 6, text: 'July' },
+        { value: 7, text: 'August' },
+        { value: 8, text: 'September' },
+        { value: 9, text: 'October' },
+        { value: 10, text: 'November' },
+        { value: 11, text: 'December' },
+      ],
+      monthsSelected: [] as number[],
     };
   },
   computed: {
     critterTypeListFiltered(): CritterTypeObj[] {
-      return this.critterTypeList.filter(critter => critter.selected);
+      return this.critterTypeList.filter((obj: CritterTypeObj) => {
+        if (obj.selected) {
+          obj.list = [
+            ...obj.list.map(critter => {
+              if (!critter.rarity) {
+                critter['show'] = 'visible';
+                return critter;
+              }
+              if (
+                (critter.availableMonths.some(month =>
+                  this.monthsSelected.includes(month),
+                ) ||
+                  critter.allYear) &&
+                this.rarity.includes(critter.rarity.toLowerCase()) &&
+                ((critter.price >= this.range[0] &&
+                  critter.price <= this.range[1]) ||
+                  (critter.priceCjFlick >= this.range[0] &&
+                    critter.priceCjFlick <= this.range[1]))
+              ) {
+                critter['show'] = 'visible';
+              } else {
+                critter['show'] = 'hide';
+              }
+              return critter;
+            }),
+          ];
+        }
+        return obj.selected;
+      });
     },
   },
   methods: {
@@ -125,7 +270,7 @@ export default Vue.extend({
       this.critterTypeList.forEach(async critter => {
         if (e.includes(critter.value)) {
           critter.selected = true;
-          critter.list = await this.loadCritters(
+          critter.list = await crittersService.loadCritters(
             critter.value,
             this.critterSearch.lang.value,
             this.critterSearch.hemi,
@@ -139,20 +284,18 @@ export default Vue.extend({
       this.critterSearch = e;
       this.critterTypeList.forEach(
         async obj =>
-          (obj.list = await this.loadCritters(
+          (obj.list = await crittersService.loadCritters(
             obj.value,
             this.critterSearch.lang.value,
             this.critterSearch.hemi,
           )),
       );
     },
-    async loadCritters(critterType, lang, hemi): Promise<Critter[]> {
-      const critters = await crittersService.getCritters(
-        critterType,
-        lang,
-        hemi,
-      );
-      return critters;
+    filterByRarity(e: string[]) {
+      this.rarity = e;
+    },
+    filterByMonth(e: number[]) {
+      this.monthsSelected = e;
     },
   },
 });

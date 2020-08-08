@@ -4,20 +4,22 @@
       <template v-slot:activator>
         <v-list-item-title class="list__title">{{ title }}</v-list-item-title>
       </template>
-      <p v-if="critterList.length === 0" class="list__text">
+      <p v-if="visibleCritters <= 0" class="list__text">
         {{ critterType }} not found
       </p>
-      <v-list-item v-for="critter in critterList" :key="critter.id">
-        <v-list-item-content>
-          <v-list-item-title
-            class="list__elem"
-            :class="currentCritterColor(critter)"
-            @click="onSelectCritter(critter)"
-          >
-            {{ critter.name }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+      <template v-for="critter in critterList">
+        <v-list-item v-show="critter['show'] !== 'hide'" :key="critter.id">
+          <v-list-item-content>
+            <v-list-item-title
+              class="list__elem"
+              :class="currentCritterColor(critter)"
+              @click="onSelectCritter(critter)"
+            >
+              {{ critter.name }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </template>
     </v-list-group>
   </v-list>
 </template>
@@ -41,6 +43,17 @@ export default Vue.extend({
     title: {
       type: String,
       required: true,
+    },
+  },
+  computed: {
+    visibleCritters() {
+      let countVisible = this.critterList.length;
+      this.critterList.forEach((critter: any) => {
+        if (critter['show'] === 'hide') {
+          countVisible--;
+        }
+      });
+      return countVisible;
     },
   },
   methods: {

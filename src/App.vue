@@ -1,7 +1,7 @@
 <template>
   <v-app light>
     <div class="layout">
-      <router-view class="layout__main"></router-view>
+      <router-view :class="['layout__main', searchViewClass]"></router-view>
       <TheNavbar class="layout__navbar" />
     </div>
   </v-app>
@@ -14,6 +14,11 @@ import Vue from 'vue';
 export default Vue.extend({
   name: 'acnh-search',
   components: { TheNavbar },
+  computed: {
+    searchViewClass() {
+      return this.$route.path.includes('/search') ? 'layout__main--search' : null;
+    },
+  },
 });
 </script>
 
@@ -25,7 +30,7 @@ export default Vue.extend({
 }
 
 .layout {
-  @include size(100vw, 100vh);
+  @include size(100vw, 100%);
   background: transparent;
   overflow: hidden;
   background-image: radial-gradient(var(--tertiary) 10%, transparent 10%),
@@ -41,8 +46,14 @@ export default Vue.extend({
 
   &__main {
     @include size(100%, 100%);
-    padding: $header-height + 10px 0 $navbar-height;
+    @include flex(center, flex-start);
+    flex-direction: column;
+    padding: $header-height + 10px $padding-sides $navbar-height;
     overflow: auto;
+
+    &--search {
+      padding-top: $padding-sides;
+    }
   }
 
   @media screen and (min-width: $md) {

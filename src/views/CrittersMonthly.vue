@@ -4,7 +4,7 @@
       :currentMonth="currentMonth"
       @changeMonth="onChangeMonth"
     />
-    <CritterSearchForm :search="critterSearch" @search="updateList" />
+    <CritterSearchForm class="form" :search="critterSearch" @search="updateList" />
 
     <div class="container">
       <div class="container__legend">

@@ -1,37 +1,34 @@
 <template>
-  <div class="form">
-    <div class="form__group">
-      <v-select
-        :items="langObj"
-        :item-text="langObj.text"
-        :item-value="langObj.value"
-        append-icon="mdi-translate"
-        filled
-        rounded
-        dense
-        label="Language"
-        :value="this.search.lang.value"
-        @input="updateLang"
-        class="form__text"
-        item-color="accent"
-        background-color="secondary"
-        color="primary"
-      ></v-select>
-    </div>
-    <div class="form__group">
-      <v-select
-        :items="hemispheres"
-        append-icon="mdi-map-marker-circle"
-        filled
-        rounded
-        dense
-        label="Hemisphere"
-        :value="hemiVal"
-        @input="updateHemi"
-        item-color="accent"
-        background-color="secondary"
-      ></v-select>
-    </div>
+  <div class="form__group">
+    <v-select
+      class="form__control form__text"
+      :items="langObj"
+      :item-text="langObj.text"
+      :item-value="langObj.value"
+      append-icon="mdi-translate"
+      filled
+      rounded
+      dense
+      label="Language"
+      :value="this.search.lang.value"
+      @input="updateLang"
+      item-color="accent"
+      background-color="secondary"
+      color="primary"
+    ></v-select>
+    <v-select
+      class="form__control"
+      :items="hemispheres"
+      append-icon="mdi-map-marker-circle"
+      filled
+      rounded
+      dense
+      label="Hemisphere"
+      :value="hemiVal"
+      @input="updateHemi"
+      item-color="accent"
+      background-color="secondary"
+    ></v-select>
   </div>
 </template>
 
@@ -107,11 +104,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import '@/styles/global/_variables.scss';
 @import '@/styles/mixins/_mixins.scss';
-
-
-// .form__text .theme--light.v-select.v-select__selection--comma {
-//   color: var(--body-color);
-// }
+@import '@/styles/ui/_form.scss';
 
 .theme--light.v-application {
   color: var(--body-color);

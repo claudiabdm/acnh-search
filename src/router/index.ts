@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
-import Search from '@/views/Search.vue';
-import Critters from '@/views/Critters.vue';
+import CrittersSearch from '@/views/CrittersSearch.vue';
+import CrittersMonthly from '@/views/CrittersMonthly.vue';
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   { path: '/', redirect: '/critters/bugs'},
-  { path: '/search', name: 'search', component: Search },
-  { path: '/critters/:critterType', name: 'critters', component: Critters },
+  { path: '/search', name: 'search', component: CrittersSearch },
+  { path: '/critters/:critterType', name: 'critters', component: CrittersMonthly, props:true },
 ];
 
 const router = new VueRouter({

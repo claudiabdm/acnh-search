@@ -1,20 +1,51 @@
 .form {
   @include flex(flex-start, center);
   @include size(100%, auto);
-  padding: 10px $padding-sides;
   background: transparent;
 
+  &--search {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(rem(250px), rem(375px)));
+    grid-template-rows: repeat(3, max-content);
+    width: 100%;
+    column-gap: 10px;
+    justify-items: center;
+  }
+
   &__group {
-    @include size(rem(320px), auto);
-    & + & {
-      margin-left: 10px;
+    @include size(100%, auto);
+    @include flex(center, space-between);
+    min-width: rem(250px);
+    max-width: rem(768px);
+    margin: 0;
+    &--range {
+      display: unset;
+      width: 100%;
+      border-radius: rem(28px);
+      padding: 10px 24px;
+      background-color: var(--tertiary);
     }
+
+    &:first-child {
+      grid-column: 1 / -1;
+    }
+
+
+
+    &:last-child {
+      grid-column: 1 / -1;
+    }
+
   }
 
   &__control {
-    @include size(100%, 1.563rem);
-    font-size: rem(18px);
-    margin-top: 10px;
+    @include size(100%, 100%);
+    @include flex(center, center);
+    min-width: rem(140px);
+    font-size: rem(14px);
+    & + & {
+      margin-left: 5px;
+    }
   }
 
   &__text {

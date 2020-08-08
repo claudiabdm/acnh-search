@@ -1,5 +1,6 @@
 .list {
   height: max-content;
+  max-width: rem(768px);
   background-color: var(--tertiary);
   border-radius: rem(20px);
   box-shadow: $box-shadow-sharpen;

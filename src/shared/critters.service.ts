@@ -49,7 +49,7 @@ const createCritter = function(
     time: critter.availability.time ? critter.availability.time : 'All Day',
     location: critter.availability.location,
     state: '',
-    rarity: critter.availability.rarity,
+    rarity: critter.availability.rarity || 'Common',
     price: critter.price,
     priceCjFlick: critter[buyer],
     shadow: critter.shadow,

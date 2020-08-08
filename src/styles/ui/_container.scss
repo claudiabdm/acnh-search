@@ -2,7 +2,7 @@
   @include flex(center, center);
   flex-direction: column;
   background: transparent;
-  padding: $padding-sides;
+  padding: 10px 0;
   &__legend {
     @include flex(flex-start, center);
     flex-wrap: wrap;
@@ -21,29 +21,38 @@
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: rem(10px);
     align-content: center;
+    justify-items: stretch;
     margin: 20px 0;
-    padding: 0;
+
+    @media screen and (min-width: $md){
+      justify-content: center;
+    }
   }
 
   &__elem {
+    width: 100%;
     margin: 0;
     & + &:not(.list__elem) {
       margin-left: 10px;
     }
 
     &--common {
+      width: max-content;
       color: $base;
     }
 
     &--uncommon {
+      width: max-content;
       color: $success;
     }
 
     &--rare {
+      width: max-content;
       color: $primary;
     }
 
     &--ultra-rare {
+      width: max-content;
       color: $secondary;
     }
   }
