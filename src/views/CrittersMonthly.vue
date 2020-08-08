@@ -4,19 +4,19 @@
       :currentMonth="currentMonth"
       @changeMonth="onChangeMonth"
     />
-    <div class="container">
+    <div class="vue-container">
       <CritterSearchForm
         class="form"
         :search="critterSearch"
         @search="updateList"
       />
-      <div class="container__legend">
-        <p class="container__elem container__elem--common">Common</p>
-        <p class="container__elem container__elem--uncommon">Uncommon</p>
-        <p class="container__elem container__elem--rare">Rare</p>
-        <p class="container__elem container__elem--ultra-rare">Ultra-rare</p>
+      <div class="vue-container__legend">
+        <p class="vue-container__elem vue-container__elem--common">Common</p>
+        <p class="vue-container__elem vue-container__elem--uncommon">Uncommon</p>
+        <p class="vue-container__elem vue-container__elem--rare">Rare</p>
+        <p class="vue-container__elem vue-container__elem--ultra-rare">Ultra-rare</p>
       </div>
-      <div class="container__lists">
+      <div class="vue-container__lists">
         <CritterList
           title="Dissapears"
           @selectCritter="toggleCritterInfo"

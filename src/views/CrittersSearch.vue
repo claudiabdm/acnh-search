@@ -11,6 +11,7 @@
           :multiple="true"
           filled
           rounded
+          dense
           clearable
           label="Critter Type"
           class="form__text"
@@ -38,6 +39,7 @@
           filled
           rounded
           clearable
+          dense
           label="Critter Rarity"
           class="form__text"
           item-color="accent"
@@ -63,6 +65,8 @@
           filled
           rounded
           clearable
+          dense
+          :menu-props="{ offsetOverflow: true }"
           label="Month"
           class="form__text"
           item-color="accent"
@@ -85,6 +89,7 @@
           :max="max"
           :min="min"
           hide-details
+          dense
           step="100"
           class="align-center"
         >
@@ -113,8 +118,8 @@
         </v-range-slider>
       </div>
     </form>
-    <div class="container">
-      <div class="container__lists">
+    <div class="vue-container">
+      <div class="vue-container__lists">
         <CritterList
           v-for="critterObj in critterTypeListFiltered"
           :key="critterObj.value"
@@ -311,8 +316,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
- 
- 
 @import '@/styles/ui/_container.scss';
 @import '@/styles/ui/_form.scss';
 

@@ -77,8 +77,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
- 
- 
 @import '@/styles/ui/_list.scss';
 
 .theme--light.v-application {
