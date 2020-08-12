@@ -89,7 +89,7 @@ const loadCritters = async function(
   return critters;
 };
 
-export const crittersService = {
+export const crittersData = {
   getCritters,
   loadCritters,
 };

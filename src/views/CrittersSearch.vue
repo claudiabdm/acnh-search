@@ -144,7 +144,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import CritterList from '@/components/CritterList.vue';
-import { crittersService } from '@/shared/critters.service';
+import { crittersData } from '@/shared/critters-data';
 import { Critter } from '@/shared/models/critter';
 import { CritterTypeObj } from '@/shared/models/critterTypeObj';
 import CritterSearchForm from '@/components/CritterSearchForm.vue';
@@ -284,7 +284,7 @@ export default Vue.extend({
       this.critterTypeList.forEach(async critter => {
         if (e.includes(critter.value)) {
           critter.selected = true;
-          critter.list = await crittersService.loadCritters(
+          critter.list = await crittersData.loadCritters(
             critter.value,
             this.critterSearch.lang.value,
             this.critterSearch.hemi,
@@ -298,7 +298,7 @@ export default Vue.extend({
       this.critterSearch = e;
       this.critterTypeList.forEach(
         async obj =>
-          (obj.list = await crittersService.loadCritters(
+          (obj.list = await crittersData.loadCritters(
             obj.value,
             this.critterSearch.lang.value,
             this.critterSearch.hemi,

@@ -3,11 +3,12 @@ import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
-import '@/helpers/filters';
 import vuetify from './plugins/vuetify';
 import VueCompositionAPI from '@vue/composition-api'
+import formatMonthFilter from '@/shared/format-month-filter';
 
 Vue.use(VueCompositionAPI)
+Vue.filter('formatMonth', formatMonthFilter);
 
 Vue.config.productionTip = false;
 

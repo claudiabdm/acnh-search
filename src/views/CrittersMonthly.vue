@@ -62,7 +62,7 @@ import CritterModal from '@/components/CritterModal.vue';
 import CritterList from '@/components/CritterList.vue';
 import CritterInfo from '@/components/CritterInfo.vue';
 import { Critter } from '@/shared/models/critter';
-import { crittersService } from '@/shared/critters.service';
+import { crittersData } from '@/shared/critters-data';
 import { Route } from 'vue-router';
 import showCritterInfo from '@/shared/useShowCritterInfo';
 
@@ -100,7 +100,7 @@ export default Vue.extend({
     };
   },
   async created(): Promise<void> {
-    this.critterList = await crittersService.loadCritters(
+    this.critterList = await crittersData.loadCritters(
       this.critterType,
       this.critterSearch.lang.value,
       this.critterSearch.hemi,
@@ -111,7 +111,7 @@ export default Vue.extend({
       const param = to.params.critterType;
       if (this.critterTypeList.includes(param)) {
         this.critterType = to.params.critterType;
-        this.critterList = await crittersService.loadCritters(
+        this.critterList = await crittersData.loadCritters(
           this.critterType,
           this.critterSearch.lang.value,
           this.critterSearch.hemi,
@@ -159,7 +159,7 @@ export default Vue.extend({
   methods: {
     async updateList(e): Promise<void> {
       this.critterSearch = e;
-      this.critterList = await crittersService.loadCritters(
+      this.critterList = await crittersData.loadCritters(
         this.critterType,
         this.critterSearch.lang.value,
         this.critterSearch.hemi,
