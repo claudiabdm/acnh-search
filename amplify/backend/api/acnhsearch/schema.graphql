@@ -1,0 +1,6 @@
+type UserCritterInfo @model {
+  id: String!
+  bugs: [String]
+  fish: [String]
+  sea: [String]
+}

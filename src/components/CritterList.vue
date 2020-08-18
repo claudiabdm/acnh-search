@@ -10,12 +10,13 @@
       <template v-for="critter in critterList">
         <v-list-item v-show="critter['show'] !== 'hide'" :key="critter.id">
           <v-list-item-content>
-            <v-list-item-title
-              class="list__elem"
-              :class="currentCritterColor(critter)"
-              @click="onSelectCritter(critter)"
-            >
-              {{ critter.name }}
+            <v-list-item-title class="list__elem">
+              <span
+                :class="currentCritterColor(critter)"
+                @click="onSelectCritter(critter)"
+                >{{ critter.name }}</span
+              >
+              <v-checkbox></v-checkbox>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>

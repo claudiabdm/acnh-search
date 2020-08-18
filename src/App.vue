@@ -16,7 +16,7 @@ export default Vue.extend({
   components: { TheNavbar },
   computed: {
     searchViewClass() {
-      return this.$route.path.includes('/search') ? 'layout__main--search' : null;
+      return !this.$route.path.includes('/critter') ? 'layout__main--search' : null;
     },
   },
 });
@@ -48,6 +48,10 @@ export default Vue.extend({
     @include size(100%, 100vh);
     padding: $header-height + 10px $padding-sides;
     overflow: auto;
+
+    &--search {
+      padding-top: $padding-sides;
+    }
   }
 
   @media screen and (min-width: $md) {

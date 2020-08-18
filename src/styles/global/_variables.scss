@@ -82,6 +82,15 @@ $lg: 1023px;
   --hover-bg: #{darken($tertiary, 2.5%)};
   --icon-filter: grayscale(1);
   --icon-filter-selected: none;
+  --amplify-primary-color: #{$primary};
+  --amplify-primary-shade: #{lighten($primary, 2.5%)};
+  --amplify-secondary-color: #{$base};
+  --amplify-white: #{$tertiary};
+  --amplify-grey:  #{$base};
+  --amplify-light-grey:  #{$base};
+  --amplify-primary-tint: #{lighten($primary, 2.5%)};
+  --amplify-font-family: #{$font-family-primary};
+
 }
 
 // @media (prefers-color-scheme: dark) {

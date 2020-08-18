@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-acnhvue-dev-115341-authRole",
+            "UnauthRoleArn": "arn:aws:iam::308944819065:role/amplify-acnhvue-dev-115341-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::308944819065:role/amplify-acnhvue-dev-115341-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-acnhvue-dev-115341-deployment",
+            "UnauthRoleName": "amplify-acnhvue-dev-115341-unauthRole",
+            "StackName": "amplify-acnhvue-dev-115341",
+            "StackId": "arn:aws:cloudformation:eu-west-1:308944819065:stack/amplify-acnhvue-dev-115341/89621680-e06f-11ea-95d4-02c03455965c",
+            "AmplifyAppId": "d3f4uxtrq3onq2"
+        },
+        "categories": {
+            "auth": {
+                "acnhvued94cb67c": {}
+            }
+        }
+    }
+}

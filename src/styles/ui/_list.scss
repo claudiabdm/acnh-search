@@ -21,8 +21,8 @@
   }
 
   &__elem {
-    @include size(100%, rem(30px));
-    @include flex(center, flex-start);
+    @include size(100%, auto);
+    @include flex(center, space-between);
     font-size: rem(14px);
     font-weight: $font-weight-normal;
     text-transform: capitalize;
@@ -32,7 +32,6 @@
 
     &:hover {
       cursor: pointer;
-      font-size: rem(16px);
     }
 
     &--common {

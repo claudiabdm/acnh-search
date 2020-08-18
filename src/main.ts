@@ -7,6 +7,12 @@ import vuetify from './plugins/vuetify';
 import VueCompositionAPI from '@vue/composition-api'
 import formatMonthFilter from '@/shared/format-month-filter';
 
+import Amplify from 'aws-amplify';
+import '@aws-amplify/ui-vue';
+import awsExports from './aws-exports';
+
+Amplify.configure(awsExports);
+
 Vue.use(VueCompositionAPI)
 Vue.filter('formatMonth', formatMonthFilter);
 

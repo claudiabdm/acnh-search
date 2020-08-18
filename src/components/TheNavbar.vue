@@ -37,6 +37,10 @@ export default Vue.extend({
           name: 'search',
           path: '/search',
         },
+        {
+          name: 'me',
+          path: '/me',
+        },
       ],
     };
   },
@@ -44,9 +48,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
- 
- 
-
 .navbar {
   @include fixed(auto, 0, 0, 0);
   @include flex(center, space-between);
