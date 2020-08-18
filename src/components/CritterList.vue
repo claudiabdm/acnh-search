@@ -16,7 +16,7 @@
                 @click="onSelectCritter(critter)"
                 >{{ critter.name }}</span
               >
-              <v-checkbox></v-checkbox>
+              <v-checkbox v-if="user"></v-checkbox>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -28,6 +28,7 @@
 <script lang="ts">
 import { Critter } from '@/shared/models/critter';
 import Vue from 'vue';
+import { UserCritterInfo } from '@/shared/models/user-critter-info';
 
 export default Vue.extend({
   name: 'CritterList',
@@ -55,6 +56,9 @@ export default Vue.extend({
         }
       });
       return countVisible;
+    },
+    user(): UserCritterInfo {
+      return this.$store.state.user;
     },
   },
   methods: {

@@ -10,7 +10,7 @@
     </amplify-authenticator>
     <div v-if="authState === 'signedin' && user" class="user-page__logged">
       <div class="user-page__header">
-        <h2>Hello! {{ user.username }}</h2>
+        <h2>Hello! {{ authData.username }}</h2>
       </div>
       <div class="user-page__buttons">
         <amplify-sign-out class="user-page__button"></amplify-sign-out>
@@ -24,10 +24,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { onAuthUIStateChange, AuthState } from '@aws-amplify/ui-components';
-import { API, Auth } from 'aws-amplify';
-import { GraphQLResult } from '@aws-amplify/api-graphql/lib-esm/types';
-import { getUserCritterInfo } from '@/graphql/queries';
-import { deleteUserCritterInfo } from '@/graphql/mutations';
+import { Auth } from 'aws-amplify';
 import { UserCritterInfo } from '@/shared/models/user-critter-info';
 
 export default Vue.extend({
@@ -35,21 +32,23 @@ export default Vue.extend({
   data() {
     return {
       authState: '' as AuthState,
-      user: {} as any,
-      userCritterInfo: {} as UserCritterInfo,
+      authData: {} as any,
       formFields: [{ type: 'email' }, { type: 'password' }],
     };
+  },
+  computed: {
+    user(): UserCritterInfo {
+      return this.$store.state.user;
+    }
   },
   created() {
     onAuthUIStateChange(async (authState, authData) => {
       this.authState = authState;
-      this.user = authData;
-      if (this.user && this.user.attributes) {
-       const user = await API.graphql({
-          query: getUserCritterInfo,
-          variables: { id: this.user.attributes.sub },
-        }) as GraphQLResult<any>;
-      this.userCritterInfo = user.data?.getUserCritterInfo;
+      this.authData = authData;
+      if (this.authData && this.authData.attributes) {
+        this.$store.dispatch('getUserCritterInfo', this.authData.attributes.sub);
+      } else {
+        this.$store.dispatch('deleteUserCritterInfo');
       }
     });
   },
@@ -63,6 +62,7 @@ export default Vue.extend({
           }
         });
         await Auth.signOut();
+        this.$store.dispatch('deleteUserCritterInfo');
       } catch (err) {
         console.log(err);
       }
