@@ -242,6 +242,9 @@ export default Vue.extend({
       monthsSelected: [] as number[],
     };
   },
+  created() {
+    this.updateSearch(this.critterSearch);
+  },
   computed: {
     ...mapState({
       bugs: (state: any): Critter[] => state.totalCritters.bugs,
