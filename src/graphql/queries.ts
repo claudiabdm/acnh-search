@@ -2,35 +2,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const syncUserCritterInfos = /* GraphQL */ `
-  query SyncUserCritterInfos(
-    $filter: ModelUserCritterInfoFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncUserCritterInfos(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        bugs
-        fish
-        sea
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getUserCritterInfo = /* GraphQL */ `
   query GetUserCritterInfo($id: ID!) {
     getUserCritterInfo(id: $id) {
@@ -38,11 +9,9 @@ export const getUserCritterInfo = /* GraphQL */ `
       bugs
       fish
       sea
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -62,14 +31,11 @@ export const listUserCritterInfos = /* GraphQL */ `
         bugs
         fish
         sea
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
+        owner
       }
       nextToken
-      startedAt
     }
   }
 `;

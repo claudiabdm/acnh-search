@@ -20,14 +20,19 @@
     font-weight: $font-weight-normal;
   }
 
+  &__elem-group {
+    @include flex(center, space-between);
+    padding: 5px;
+  }
+  
   &__elem {
     @include size(100%, auto);
-    @include flex(center, space-between);
+    @include flex(center, flex-start);
+    flex-basis: 0;
+    max-width: rem(140px);
     font-size: rem(14px);
     font-weight: $font-weight-normal;
     text-transform: capitalize;
-    transition: font-size 0.15s linear;
-    will-change: font-size;
     padding: 0;
 
     &:hover {
@@ -49,5 +54,8 @@
     &--ultra-rare {
       color: $secondary;
     }
+  }
+  @media screen and (min-width: 375px) {
+    max-width: 100%;
   }
 }

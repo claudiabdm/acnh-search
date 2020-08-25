@@ -14,4 +14,5 @@ export interface Critter {
   priceCjFlick: number;
   shadow?: string;
   type: string;
+  checked: boolean;
 }

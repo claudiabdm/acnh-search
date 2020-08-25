@@ -1,5 +1,5 @@
 projects:
-  acnhsearch:
+  usersGameInfo:
     schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.ts

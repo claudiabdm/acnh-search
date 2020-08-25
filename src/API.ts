@@ -7,7 +7,6 @@ export type CreateUserCritterInfoInput = {
   bugs?: Array< string | null > | null,
   fish?: Array< string | null > | null,
   sea?: Array< string | null > | null,
-  _version?: number | null,
 };
 
 export type ModelUserCritterInfoConditionInput = {
@@ -64,12 +63,10 @@ export type UpdateUserCritterInfoInput = {
   bugs?: Array< string | null > | null,
   fish?: Array< string | null > | null,
   sea?: Array< string | null > | null,
-  _version?: number | null,
 };
 
 export type DeleteUserCritterInfoInput = {
   id?: string | null,
-  _version?: number | null,
 };
 
 export type ModelUserCritterInfoFilterInput = {
@@ -94,11 +91,9 @@ export type CreateUserCritterInfoMutation = {
     bugs: Array< string | null > | null,
     fish: Array< string | null > | null,
     sea: Array< string | null > | null,
-    _version: number,
-    _deleted: boolean | null,
-    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner: string | null,
   } | null,
 };
 
@@ -114,11 +109,9 @@ export type UpdateUserCritterInfoMutation = {
     bugs: Array< string | null > | null,
     fish: Array< string | null > | null,
     sea: Array< string | null > | null,
-    _version: number,
-    _deleted: boolean | null,
-    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner: string | null,
   } | null,
 };
 
@@ -134,38 +127,9 @@ export type DeleteUserCritterInfoMutation = {
     bugs: Array< string | null > | null,
     fish: Array< string | null > | null,
     sea: Array< string | null > | null,
-    _version: number,
-    _deleted: boolean | null,
-    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
-  } | null,
-};
-
-export type SyncUserCritterInfosQueryVariables = {
-  filter?: ModelUserCritterInfoFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  lastSync?: number | null,
-};
-
-export type SyncUserCritterInfosQuery = {
-  syncUserCritterInfos:  {
-    __typename: "ModelUserCritterInfoConnection",
-    items:  Array< {
-      __typename: "UserCritterInfo",
-      id: string,
-      bugs: Array< string | null > | null,
-      fish: Array< string | null > | null,
-      sea: Array< string | null > | null,
-      _version: number,
-      _deleted: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-    nextToken: string | null,
-    startedAt: number | null,
+    owner: string | null,
   } | null,
 };
 
@@ -180,11 +144,9 @@ export type GetUserCritterInfoQuery = {
     bugs: Array< string | null > | null,
     fish: Array< string | null > | null,
     sea: Array< string | null > | null,
-    _version: number,
-    _deleted: boolean | null,
-    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner: string | null,
   } | null,
 };
 
@@ -203,15 +165,16 @@ export type ListUserCritterInfosQuery = {
       bugs: Array< string | null > | null,
       fish: Array< string | null > | null,
       sea: Array< string | null > | null,
-      _version: number,
-      _deleted: boolean | null,
-      _lastChangedAt: number,
       createdAt: string,
       updatedAt: string,
+      owner: string | null,
     } | null > | null,
     nextToken: string | null,
-    startedAt: number | null,
   } | null,
+};
+
+export type OnCreateUserCritterInfoSubscriptionVariables = {
+  owner: string,
 };
 
 export type OnCreateUserCritterInfoSubscription = {
@@ -221,12 +184,14 @@ export type OnCreateUserCritterInfoSubscription = {
     bugs: Array< string | null > | null,
     fish: Array< string | null > | null,
     sea: Array< string | null > | null,
-    _version: number,
-    _deleted: boolean | null,
-    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner: string | null,
   } | null,
+};
+
+export type OnUpdateUserCritterInfoSubscriptionVariables = {
+  owner: string,
 };
 
 export type OnUpdateUserCritterInfoSubscription = {
@@ -236,12 +201,14 @@ export type OnUpdateUserCritterInfoSubscription = {
     bugs: Array< string | null > | null,
     fish: Array< string | null > | null,
     sea: Array< string | null > | null,
-    _version: number,
-    _deleted: boolean | null,
-    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner: string | null,
   } | null,
+};
+
+export type OnDeleteUserCritterInfoSubscriptionVariables = {
+  owner: string,
 };
 
 export type OnDeleteUserCritterInfoSubscription = {
@@ -251,10 +218,8 @@ export type OnDeleteUserCritterInfoSubscription = {
     bugs: Array< string | null > | null,
     fish: Array< string | null > | null,
     sea: Array< string | null > | null,
-    _version: number,
-    _deleted: boolean | null,
-    _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
+    owner: string | null,
   } | null,
 };

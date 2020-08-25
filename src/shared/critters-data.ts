@@ -55,6 +55,7 @@ const createCritter = function(
     shadow: critter.shadow,
     img: critter.image_uri,
     type: critterType,
+    checked: false,
   };
   return critterObj;
 };
@@ -81,9 +82,9 @@ const getCritters = async function(
 };
 
 const loadCritters = async function(
-  critterType: string,
-  lang: string,
-  hemi: string,
+  critterType = 'fish',
+  lang = 'name-EUen',
+  hemi = 'northern',
 ): Promise<Critter[]> {
   const critters = await getCritters(critterType, lang, hemi);
   return critters;

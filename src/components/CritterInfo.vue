@@ -1,6 +1,6 @@
 <template>
   <div class="critter">
-    <img :src="currentCritter.img" class="critter__img" />
+    <img :src="currentCritter.img" class="critter__img" :alt="currentCritter + 'image'"/>
     <template v-if="!currentCritter.allYear">
       <p class="critter__text">
         <span class="critter__property">Start Month:</span>

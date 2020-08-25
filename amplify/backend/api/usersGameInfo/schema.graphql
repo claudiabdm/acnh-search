@@ -1,0 +1,8 @@
+type UserCritterInfo
+  @model
+  @auth(rules: [{ allow: owner}]) {
+  id: String!
+  bugs: [String]
+  fish: [String]
+  sea: [String]
+}

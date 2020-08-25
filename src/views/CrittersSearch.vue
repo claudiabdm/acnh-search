@@ -1,7 +1,7 @@
 <template>
   <div>
     <form class="form form--search">
-      <CritterSearchForm :search="critterSearch" @search="updateSearch" />
+      <CritterMonthSelect :search="critterSearch" @search="updateSearch" />
       <div class="form__group">
         <v-select
           v-model="types"
@@ -144,33 +144,32 @@
 <script lang="ts">
 import Vue from 'vue';
 import CritterList from '@/components/CritterList.vue';
-import { crittersData } from '@/shared/critters-data';
 import { Critter } from '@/shared/models/critter';
 import { CritterTypeObj } from '@/shared/models/critterTypeObj';
-import CritterSearchForm from '@/components/CritterSearchForm.vue';
+import CritterMonthSelect from '@/components/CritterMonthSelect.vue';
 import CritterModal from '@/components/CritterModal.vue';
 import CritterInfo from '@/components/CritterInfo.vue';
 import showCritterInfo from '@/shared/useShowCritterInfo';
+import { mapActions, mapMutations, mapState } from 'vuex';
 
 export default Vue.extend({
   setup() {
-    const {
-      isModalVisible,
-      currentCritter,
-      toggleCritterInfo,
-    } = showCritterInfo();
+    const { isModalVisible, currentCritter, toggleCritterInfo } = showCritterInfo();
     return {
       isModalVisible,
       currentCritter,
       toggleCritterInfo,
     };
   },
-  components: { CritterList, CritterSearchForm, CritterModal, CritterInfo },
+  components: { CritterList, CritterMonthSelect, CritterModal, CritterInfo },
   data() {
     return {
       critterSearch: {
-        lang: { text: 'EU-en', value: 'name-EUen' },
-        hemi: 'northern',
+        lang: {
+          text: this.$store.state.totalCritters.lang.text,
+          value: this.$store.state.totalCritters.lang.value,
+        },
+        hemi: this.$store.state.totalCritters.hemi,
       },
       critterTypeList: [
         {
@@ -243,29 +242,27 @@ export default Vue.extend({
       monthsSelected: [] as number[],
     };
   },
-  created() {
-    this.updateSearch(this.critterSearch);
-  },
   computed: {
+    ...mapState({
+      bugs: (state: any): Critter[] => state.totalCritters.bugs,
+      fish: (state: any): Critter[] => state.totalCritters.fish,
+      sea: (state: any): Critter[] => state.totalCritters.sea,
+    }),
     critterTypeListFiltered(): CritterTypeObj[] {
       return this.critterTypeList.filter((obj: CritterTypeObj) => {
         if (obj.selected) {
           obj.list = [
-            ...obj.list.map(critter => {
+            ...this[obj.value].map(critter => {
               if (!critter.rarity) {
                 critter['show'] = 'visible';
                 return critter;
               }
               if (
-                (critter.availableMonths.some(month =>
-                  this.monthsSelected.includes(month),
-                ) ||
+                (critter.availableMonths.some(month => this.monthsSelected.includes(month)) ||
                   critter.allYear) &&
                 this.rarity.includes(critter.rarity.toLowerCase()) &&
-                ((critter.price >= this.range[0] &&
-                  critter.price <= this.range[1]) ||
-                  (critter.priceCjFlick >= this.range[0] &&
-                    critter.priceCjFlick <= this.range[1]))
+                ((critter.price >= this.range[0] && critter.price <= this.range[1]) ||
+                  (critter.priceCjFlick >= this.range[0] && critter.priceCjFlick <= this.range[1]))
               ) {
                 critter['show'] = 'visible';
               } else {
@@ -280,29 +277,25 @@ export default Vue.extend({
     },
   },
   methods: {
+    ...mapMutations('totalCritters', ['updateLang', 'updateHemi']),
+    ...mapActions('totalCritters', ['getCritterList']),
     async updateCritterList(e: string): Promise<void> {
-      this.critterTypeList.forEach(async critter => {
-        if (e.includes(critter.value)) {
-          critter.selected = true;
-          critter.list = await crittersData.loadCritters(
-            critter.value,
-            this.critterSearch.lang.value,
-            this.critterSearch.hemi,
-          );
+      this.critterTypeList.forEach(async critterListObj => {
+        if (e.includes(critterListObj.value)) {
+          critterListObj.selected = true;
+          await this.getCritterList(critterListObj.value);
+          critterListObj.list = this[critterListObj.value];
         } else {
-          critter.selected = false;
+          critterListObj.selected = false;
         }
       });
     },
-    async updateSearch(e): Promise<void> {
+    async updateSearch(e: { lang: { text: string; value: string }; hemi: string }): Promise<void> {
       this.critterSearch = e;
+      this.updateLang(e.lang);
+      this.updateHemi(e.hemi);
       this.critterTypeList.forEach(
-        async obj =>
-          (obj.list = await crittersData.loadCritters(
-            obj.value,
-            this.critterSearch.lang.value,
-            this.critterSearch.hemi,
-          )),
+        async (critterListObj: CritterTypeObj) => await this.getCritterList(critterListObj.value),
       );
     },
     filterByRarity(e: string[]) {

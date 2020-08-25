@@ -10,14 +10,50 @@
 <script lang="ts">
 import TheNavbar from '@/components/TheNavbar.vue';
 import Vue from 'vue';
+import { Auth } from 'aws-amplify';
+import { mapActions } from 'vuex';
+import { Route } from 'vue-router';
 
 export default Vue.extend({
   name: 'acnh-search',
   components: { TheNavbar },
+  data() {
+    return {
+      critterType: this.$route.params.critterType,
+      critterTypeList: ['bugs', 'fish', 'sea'],
+    };
+  },
+  async created() {
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      if (user) {
+        await this.getUserCritterInfo(user.attributes.sub);
+      } else {
+        await this.deleteUserCritterInfo();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    this.critterTypeList.forEach(
+      async (critterType: string) => await this.getCritterList(critterType),
+    );
+  },
   computed: {
     searchViewClass() {
       return !this.$route.path.includes('/critter') ? 'layout__main--search' : null;
     },
+  },
+  watch: {
+    async $route(to: Route) {
+      if (to.params.hasOwnProperty('critterType')) {
+        this.critterType = to.params.critterType;
+        await this.getCritterList(this.critterType);
+      }
+    },
+  },
+  methods: {
+    ...mapActions('user', ['getUserCritterInfo', 'deleteUserCritterInfo']),
+    ...mapActions('totalCritters', ['getCritterList']),
   },
 });
 </script>

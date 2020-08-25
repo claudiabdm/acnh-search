@@ -10,8 +10,8 @@
 
 .btn {
   @include flex(center, center);
-  @include size($width: rem(50px), $height: var(--button-height));
-
+  @include size($width: max-content, $height: var(--button-height));
+  min-width: rem(50px);
   fill: #fff;
   border: 0;
   border-radius: 5px;
@@ -25,7 +25,8 @@
   transition: background-color 0.1s linear;
   box-shadow: $box-shadow-sharpen;
 
-  &:disabled, &--disabled {
+  &:disabled,
+  &--disabled {
     background-color: $grey-200;
   }
 
@@ -41,7 +42,6 @@
   @media screen and (min-width: $md) {
     min-width: 100px;
   }
-
 }
 
 //--- Colors ---//
@@ -54,6 +54,11 @@
 .btn--success {
   --button-bgcolor: #{$success};
   --button-hover: #{darken($success, 5%)};
+}
+
+.btn--base {
+  --button-bgcolor: #{$base};
+  --button-hover: #{darken($base, 5%)};
 }
 
 //--- Sizes ---//
@@ -84,9 +89,17 @@
   transition: color 0.2s ease-out;
   box-shadow: none;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: #{darken($base, 20%)};
     --button-hover: rgba(0, 0, 0, 0);
   }
 }
-
+//--- Open button ---//
+.btn.btn--open-modal {
+  --button-font-size: rem(14px);
+  min-width: rem(50px);
+  font-weight: $font-weight-light;
+  color: #fff;
+  box-shadow: $box-shadow-sharpen;
+}

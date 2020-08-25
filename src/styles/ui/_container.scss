@@ -18,7 +18,7 @@
   &__lists {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: rem(10px);
     align-content: center;
     justify-items: stretch;

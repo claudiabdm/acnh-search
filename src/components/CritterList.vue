@@ -4,19 +4,32 @@
       <template v-slot:activator>
         <v-list-item-title class="list__title">{{ title }}</v-list-item-title>
       </template>
-      <p v-if="visibleCritters <= 0" class="list__text">
-        {{ critterType }} not found
-      </p>
+      <p v-if="visibleCritters <= 0" class="list__text">{{ critterType }} not found</p>
       <template v-for="critter in critterList">
         <v-list-item v-show="critter['show'] !== 'hide'" :key="critter.id">
           <v-list-item-content>
-            <v-list-item-title class="list__elem">
-              <span
-                :class="currentCritterColor(critter)"
+            <v-list-item-title class="list__elem-group">
+              <div class="list__elem">
+                <template v-if="user">
+                  <v-checkbox
+                    @click="checkCritter(critter)"
+                    :value="critter.checked"
+                    v-model="critter.checked"
+                    :id="critter.id.toString()"
+                    :ripple="false"
+                  ></v-checkbox>
+                </template>
+                <label :for="critter.id" :class="['list__elem', currentCritterColor(critter)]">
+                  {{ critter.name }}
+                </label>
+              </div>
+              <button
+                type="button"
+                class="btn btn--sm btn--base btn--open-modal list__btn"
                 @click="onSelectCritter(critter)"
-                >{{ critter.name }}</span
               >
-              <v-checkbox v-if="user"></v-checkbox>
+                Info
+              </button>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -28,10 +41,15 @@
 <script lang="ts">
 import { Critter } from '@/shared/models/critter';
 import Vue from 'vue';
-import { UserCritterInfo } from '@/shared/models/user-critter-info';
+import { mapActions, mapState } from 'vuex';
 
 export default Vue.extend({
   name: 'CritterList',
+  data() {
+    return {
+      selectedCritters: [] as Critter[],
+    };
+  },
   props: {
     critterType: {
       type: String,
@@ -48,7 +66,7 @@ export default Vue.extend({
     },
   },
   computed: {
-    visibleCritters() {
+    visibleCritters(): number {
       let countVisible = this.critterList.length;
       this.critterList.forEach((critter: any) => {
         if (critter['show'] === 'hide') {
@@ -57,14 +75,19 @@ export default Vue.extend({
       });
       return countVisible;
     },
-    user(): UserCritterInfo {
-      return this.$store.state.user;
-    },
+    ...mapState({ user: (state: any): string => state.user.user }),
   },
   methods: {
+    ...mapActions('user', ['updateUserCritterInfo']),
+
+    async checkCritter(critter: Critter) {
+      await this.updateUserCritterInfo({ id: critter.id.toString(), type: this.critterType });
+    },
+
     onSelectCritter(critter: Critter) {
       this.$emit('selectCritter', critter);
     },
+
     currentCritterColor(critter) {
       switch (critter.rarity) {
         case 'Uncommon':

@@ -1,7 +1,6 @@
 <template>
   <div class="user-page vue-container">
     <amplify-authenticator username-alias="email">
-      <amplify-sign-in slot="sign-in" username-alias="email"></amplify-sign-in>
       <amplify-sign-up
         username-alias="email"
         :form-fields.prop="formFields"
@@ -12,11 +11,15 @@
       <div class="user-page__header">
         <h2>Hello! {{ authData.username }}</h2>
       </div>
+      <div v-for="critterType in critterTypes" :key="critterType">
+        You have {{ user[critterType].length }} of bugs out of
+        {{ totalCritters[critterType].length }}
+      </div>
       <div class="user-page__buttons">
         <amplify-sign-out class="user-page__button"></amplify-sign-out>
-        <amplify-button class="user-page__button" @click="deleteUserAccount"
-          >Delete Account</amplify-button
-        >
+        <amplify-button class="user-page__button" @click="deleteUserAccount">
+          Delete Account
+        </amplify-button>
       </div>
     </div>
   </div>
@@ -25,7 +28,7 @@
 import Vue from 'vue';
 import { onAuthUIStateChange, AuthState } from '@aws-amplify/ui-components';
 import { Auth } from 'aws-amplify';
-import { UserCritterInfo } from '@/shared/models/user-critter-info';
+import { mapState, mapActions } from 'vuex';
 
 export default Vue.extend({
   name: 'UserPage',
@@ -33,36 +36,41 @@ export default Vue.extend({
     return {
       authState: '' as AuthState,
       authData: {} as any,
+      critterTypes: ['bugs', 'fish', 'sea'],
       formFields: [{ type: 'email' }, { type: 'password' }],
     };
-  },
-  computed: {
-    user(): UserCritterInfo {
-      return this.$store.state.user;
-    }
   },
   created() {
     onAuthUIStateChange(async (authState, authData) => {
       this.authState = authState;
       this.authData = authData;
       if (this.authData && this.authData.attributes) {
-        this.$store.dispatch('getUserCritterInfo', this.authData.attributes.sub);
+        await this.getUserCritterInfo(this.authData.attributes.sub);
+        this.critterTypes.forEach(async (critterName: string) => await this.getCritterList(critterName));
       } else {
-        this.$store.dispatch('deleteUserCritterInfo');
+        await this.deleteUserCritterInfo();
       }
     });
   },
+  computed: {
+    ...mapState({
+      user: (state: any) => state.user.user,
+      totalCritters: (state: any) => state.totalCritters,
+    }),
+  },
   methods: {
+    ...mapActions('user', ['getUserCritterInfo', 'deleteUserCritterInfo']),
+    ...mapActions('totalCritters', ['getCritterList']),
     async deleteUserAccount() {
       try {
         const user = await Auth.currentAuthenticatedUser();
-        user.deleteUser((error, data) => {
+        user.deleteUser((error) => {
           if (error) {
             throw error;
           }
         });
         await Auth.signOut();
-        this.$store.dispatch('deleteUserCritterInfo');
+        await this.deleteUserCritterInfo();
       } catch (err) {
         console.log(err);
       }
@@ -70,6 +78,7 @@ export default Vue.extend({
   },
 });
 </script>
+
 <style lang="scss" scoped>
 .user-page {
   display: flex;
