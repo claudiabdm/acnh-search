@@ -2,7 +2,7 @@
   <div>
     <CritterMonthNavbar :currentMonth="currentMonth" @changeMonth="onChangeMonth" />
     <div class="vue-container">
-      <CritterMonthSelect class="form" :search="critterSearch" @search="updateList" />
+      <CritterBasicSelect class="form" :search="critterSearch" @search="updateList" />
       <div class="vue-container__legend">
         <p class="vue-container__elem vue-container__elem--common">Common</p>
         <p class="vue-container__elem vue-container__elem--uncommon">
@@ -53,7 +53,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import CritterMonthSelect from '@/components/CritterMonthSelect.vue';
+import CritterBasicSelect from '@/components/CritterBasicSelect.vue';
 import CritterMonthNavbar from '@/components/CritterMonthNavbar.vue';
 import CritterModal from '@/components/CritterModal.vue';
 import CritterList from '@/components/CritterList.vue';
@@ -69,7 +69,7 @@ export default Vue.extend({
     CritterList,
     CritterModal,
     CritterInfo,
-    CritterMonthSelect,
+    CritterBasicSelect,
   },
   props: {
     critterType: {

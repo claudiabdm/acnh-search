@@ -1,7 +1,7 @@
 <template>
   <div>
     <form class="form form--search">
-      <CritterMonthSelect :search="critterSearch" @search="updateSearch" />
+      <CritterBasicSelect :search="critterSearch" @search="updateSearch" />
       <div class="form__group">
         <v-select
           v-model="types"
@@ -146,7 +146,7 @@ import Vue from 'vue';
 import CritterList from '@/components/CritterList.vue';
 import { Critter } from '@/shared/models/critter';
 import { CritterTypeObj } from '@/shared/models/critterTypeObj';
-import CritterMonthSelect from '@/components/CritterMonthSelect.vue';
+import CritterBasicSelect from '@/components/CritterBasicSelect.vue';
 import CritterModal from '@/components/CritterModal.vue';
 import CritterInfo from '@/components/CritterInfo.vue';
 import showCritterInfo from '@/shared/useShowCritterInfo';
@@ -161,7 +161,7 @@ export default Vue.extend({
       toggleCritterInfo,
     };
   },
-  components: { CritterList, CritterMonthSelect, CritterModal, CritterInfo },
+  components: { CritterList, CritterBasicSelect, CritterModal, CritterInfo },
   data() {
     return {
       critterSearch: {

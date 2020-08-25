@@ -36,7 +36,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
-  name: 'CritterMonthSelect',
+  name: 'CritterBasicSelect',
   props: {
     search: {
       type: Object,
