@@ -20,6 +20,18 @@
     font-weight: $font-weight-normal;
   }
 
+  &__icon {
+    @include size(rem(30px));
+  }
+
+  &__btn {
+    height: max-content;
+    background-color: $tertiary-darker;
+    &:hover{
+      background-color: darken($tertiary-darker, 10%);
+    }
+  }
+
   &__elem-group {
     @include flex(center, space-between);
     padding: 5px;

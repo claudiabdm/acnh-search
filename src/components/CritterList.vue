@@ -28,7 +28,7 @@
                 class="btn btn--sm btn--base btn--open-modal list__btn"
                 @click="onSelectCritter(critter)"
               >
-                Info
+                <img :src="critter.icon" :alt="currentCritter + 'icon'" class="list__icon" />
               </button>
             </v-list-item-title>
           </v-list-item-content>

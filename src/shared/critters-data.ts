@@ -39,6 +39,7 @@ const createCritter = function(
   const availableMonths = critter.availability[`month-array-${hemisphere}`].map(
     (month: number) => month - 1,
   );
+  console.log(critter);
   const critterObj: Critter = {
     id: critter.id,
     name: critter.name[lang],
@@ -54,6 +55,7 @@ const createCritter = function(
     priceCjFlick: critter[buyer],
     shadow: critter.shadow,
     img: critter.image_uri,
+    icon: critter.icon_uri,
     type: critterType,
     checked: false,
   };

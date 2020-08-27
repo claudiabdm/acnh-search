@@ -10,6 +10,7 @@ export interface Critter {
   state: string;
   rarity: string;
   img?: string;
+  icon?: string;
   price: number;
   priceCjFlick: number;
   shadow?: string;
