@@ -12,8 +12,8 @@
         <h2>Hello! {{ authData.username }}</h2>
       </div>
       <div v-for="critterType in critterTypes" :key="critterType">
-        You have {{ user[critterType].length }} of bugs out of
-        {{ totalCritters[critterType].length }}
+        You have {{ user[critterType].length }} {{critterType}} out of
+        {{ totalCritters[critterType].length }} 
       </div>
       <div class="user-page__buttons">
         <amplify-sign-out class="user-page__button"></amplify-sign-out>
