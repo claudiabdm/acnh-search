@@ -88,6 +88,8 @@ export default Vue.extend({
     &--search {
       padding-top: $padding-sides;
     }
+
+    
   }
 
   @media screen and (min-width: $md) {
@@ -95,7 +97,7 @@ export default Vue.extend({
     flex-direction: row-reverse;
 
     &__main {
-      width: 100vw - $navbar-width-desktop;
+      @include size(100vw - $navbar-width-desktop, 100vh);
     }
   }
 }
