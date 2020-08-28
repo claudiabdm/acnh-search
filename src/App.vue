@@ -66,7 +66,7 @@ export default Vue.extend({
 }
 
 .layout {
-  @include size(100%, 100%);
+  @include size(100vw, 100vh);
   background: transparent;
   background-image: radial-gradient(var(--tertiary) 10%, transparent 10%),
     radial-gradient(var(--tertiary) 10%, transparent 10%);
@@ -81,13 +81,16 @@ export default Vue.extend({
   overflow: hidden;
 
   &__main {
-    @include size(100%, 100vh);
+    @include size(100%, auto);
     padding: $header-height + 10px $padding-sides;
     overflow: auto;
 
     &--search {
       padding-top: $padding-sides;
     }
+  }
+
+  &__navbar {
   }
 
   @media screen and (min-width: $md) {

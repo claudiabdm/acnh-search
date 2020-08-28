@@ -1,4 +1,5 @@
 .vue-container {
+  padding-bottom: $navbar-height;
   @include flex(center, center);
   flex-direction: column;
   background: transparent;

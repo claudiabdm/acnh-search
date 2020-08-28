@@ -61,6 +61,7 @@ export default Vue.extend({
 
 .month-navbar {
   @include fixed($top: 0, $left: 0);
+  @include size(100%, $header-height);
   @include flex(center, space-between);
   width: 100vw;
   padding: 10px;
@@ -74,7 +75,6 @@ export default Vue.extend({
 
   &__title {
     @include flex(center, flex-start);
-
     font-size: rem(24px);
     font-weight: 700;
   }
