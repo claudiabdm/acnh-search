@@ -9,11 +9,11 @@
     </amplify-authenticator>
     <div v-if="authState === 'signedin' && user" class="user-page__logged">
       <div class="user-page__header">
-        <h2>Hello! {{ authData.username }}</h2>
+        <h2 class="user-page__welcome">Hello! {{ authData.username }}</h2>
       </div>
-      <div v-for="critterType in critterTypes" :key="critterType">
-        You have {{ user[critterType].length }} {{critterType}} out of
-        {{ totalCritters[critterType].length }} 
+      <div class="user-page__critter" v-for="critterType in critterTypes" :key="critterType">
+        You have {{ user[critterType].length }} {{ critterType }} out of
+        {{ totalCritters[critterType].length }}
       </div>
       <div class="user-page__buttons">
         <amplify-sign-out class="user-page__button"></amplify-sign-out>
@@ -46,7 +46,9 @@ export default Vue.extend({
       this.authData = authData;
       if (this.authData && this.authData.attributes) {
         await this.getUserCritterInfo(this.authData.attributes.sub);
-        this.critterTypes.forEach(async (critterName: string) => await this.getCritterList(critterName));
+        this.critterTypes.forEach(
+          async (critterName: string) => await this.getCritterList(critterName),
+        );
       } else {
         await this.deleteUserCritterInfo();
       }
@@ -64,7 +66,7 @@ export default Vue.extend({
     async deleteUserAccount() {
       try {
         const user = await Auth.currentAuthenticatedUser();
-        user.deleteUser((error) => {
+        user.deleteUser(error => {
           if (error) {
             throw error;
           }
@@ -83,6 +85,11 @@ export default Vue.extend({
 .user-page {
   display: flex;
   justify-content: center;
+
+  &__welcome {
+    margin-bottom: 20px;
+  }
+
   &__logged {
     @include flex(center, space-between);
     flex-direction: column;
@@ -100,6 +107,11 @@ export default Vue.extend({
   &__button {
     max-width: max-content;
     margin-top: 10px;
+  }
+  &__critter {
+    & + & {
+      margin-top: 10px;
+    }
   }
 }
 </style>
