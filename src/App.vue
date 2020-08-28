@@ -78,7 +78,7 @@ export default Vue.extend({
   font-weight: $font-weight-bold;
   font-size: $font-size-body;
   line-height: 1;
-  overflow: hidden;
+  overflow: auto;
 
   &__main {
     @include size(100%, auto);
@@ -88,9 +88,6 @@ export default Vue.extend({
     &--search {
       padding-top: $padding-sides;
     }
-  }
-
-  &__navbar {
   }
 
   @media screen and (min-width: $md) {
