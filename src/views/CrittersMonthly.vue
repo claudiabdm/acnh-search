@@ -8,11 +8,11 @@
           <div class="form__label">
             <label class="v-label v-label--active theme--light">Time</label>
             <div class="form__btns">
-              <button class="btn btn--sm" type="button" @click="timeRange = [1, 24]">
+              <button class="btn btn--sm form__btn" type="button" @click="timeRange = [1, 24]">
                 All Day
               </button>
               <button
-                class="btn btn--sm"
+                class="btn btn--sm form__btn"
                 type="button"
                 @click="timeRange = [new Date().getHours(), new Date().getHours() + 1]"
               >
