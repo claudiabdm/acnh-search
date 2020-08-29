@@ -121,8 +121,8 @@ export default Vue.extend({
       }),
       critterSearch: {
         lang: {
-          text: this.$store.state.totalCritters.lang.text,
-          value: this.$store.state.totalCritters.lang.value,
+          text: this.$store.state.lang.text,
+          value: this.$store.state.lang.value,
         },
         hemi: this.$store.state.totalCritters.hemi,
       },
@@ -162,7 +162,8 @@ export default Vue.extend({
     },
   },
   methods: {
-    ...mapMutations('totalCritters', ['updateLang', 'updateHemi']),
+    ...mapMutations(['updateLang']),
+    ...mapMutations('totalCritters', ['updateHemi']),
     ...mapActions('totalCritters', ['getCritterList']),
 
     async updateList(e): Promise<void> {

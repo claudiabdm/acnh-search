@@ -37,6 +37,7 @@ export default Vue.extend({
     this.critterTypeList.forEach(
       async (critterType: string) => await this.getCritterList(critterType),
     );
+    await this.getArtList();
   },
   computed: {
     searchViewClass() {
@@ -54,6 +55,7 @@ export default Vue.extend({
   methods: {
     ...mapActions('user', ['getUserCritterInfo', 'deleteUserCritterInfo']),
     ...mapActions('totalCritters', ['getCritterList']),
+    ...mapActions('totalArt', ['getArtList']),
   },
 });
 </script>

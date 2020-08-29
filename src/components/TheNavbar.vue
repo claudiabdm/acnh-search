@@ -1,12 +1,7 @@
 <template>
   <nav class="navbar">
     <h2 class="navbar__title">Welcome to ACNH-Search!</h2>
-    <router-link
-      class="navbar__link"
-      v-for="link in links"
-      :key="link.name"
-      :to="link.path"
-    >
+    <router-link class="navbar__link" v-for="link in links" :key="link.name" :to="link.path">
       <svg class="navbar__icon">
         <use :href="`assets/svgs/sprite.svg#${link.name}`" />
       </svg>
@@ -32,6 +27,10 @@ export default Vue.extend({
         {
           name: 'sea',
           path: '/critters/sea',
+        },
+        {
+          name: 'art',
+          path: '/art',
         },
         {
           name: 'search',

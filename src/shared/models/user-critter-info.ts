@@ -3,4 +3,5 @@ export interface UserCritterInfo {
   bugs: string[],
   fish: string[],
   sea: string[],
+  art?: string[],
 }

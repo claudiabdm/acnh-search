@@ -135,7 +135,9 @@
         <div class="form__label">
           <label class="v-label v-label--active theme--light">Time</label>
           <div class="form__btns">
-            <button class="btn btn--sm form__btn" type="button" @click="timeRange = [1, 24]">All Day</button>
+            <button class="btn btn--sm form__btn" type="button" @click="timeRange = [1, 24]">
+              All Day
+            </button>
             <button
               class="btn btn--sm form__btn"
               type="button"
@@ -210,8 +212,8 @@ export default Vue.extend({
       }),
       critterSearch: {
         lang: {
-          text: this.$store.state.totalCritters.lang.text,
-          value: this.$store.state.totalCritters.lang.value,
+          text: this.$store.state.lang.text,
+          value: this.$store.state.lang.value,
         },
         hemi: this.$store.state.totalCritters.hemi,
       },
@@ -324,7 +326,8 @@ export default Vue.extend({
     },
   },
   methods: {
-    ...mapMutations('totalCritters', ['updateLang', 'updateHemi']),
+    ...mapMutations(['updateLang']),
+    ...mapMutations('totalCritters', ['updateHemi']),
     ...mapActions('totalCritters', ['getCritterList']),
     async updateCritterList(e: string): Promise<void> {
       this.critterTypeList.forEach(async critterListObj => {
@@ -362,7 +365,7 @@ export default Vue.extend({
           critterPriceCjFlick <= selectedPriceRange[1])
       );
     },
-     filterByTime(critterTimeArr: number[], selectedTimeRange: number[]): boolean {
+    filterByTime(critterTimeArr: number[], selectedTimeRange: number[]): boolean {
       if (critterTimeArr.length === 24) {
         return true;
       }
