@@ -55,7 +55,9 @@
   &__btns {
     @include flex(center, space-between);
   }
-
+  &__btn {
+    color: $tertiary;
+  }
   &__text {
     color: var(--body-color);
   }

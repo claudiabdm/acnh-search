@@ -8,7 +8,7 @@
   --button-hover: #{darken($primary, 10%)};
 }
 
-button.btn {
+.btn {
   @include flex(center, center);
   @include size($width: max-content, $height: var(--button-height));
   min-width: rem(50px);

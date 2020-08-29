@@ -190,9 +190,8 @@ export default Vue.extend({
         return true;
       }
       return (
-        (critterTimeArr[0] >= selectedTimeRange[0] && critterTimeArr[0] <= selectedTimeRange[1]) ||
-        (critterTimeArr[critterTimeArr.length - 1] >= selectedTimeRange[0] &&
-          critterTimeArr[critterTimeArr.length - 1] <= selectedTimeRange[1])
+        critterTimeArr.includes(selectedTimeRange[0]) ||
+        critterTimeArr.includes(selectedTimeRange[1] - 1)
       );
     },
   },
