@@ -2,7 +2,34 @@
   <div>
     <CritterMonthNavbar :currentMonth="currentMonth" @changeMonth="onChangeMonth" />
     <div class="vue-container">
-      <CritterBasicSelect class="form" :search="critterSearch" @search="updateList" />
+      <div class="form">
+        <CritterBasicSelect :search="critterSearch" @search="updateList" />
+        <div class="form__group form__slider form__slider--time">
+          <div class="form__label">
+            <label class="v-label v-label--active theme--light">Time</label>
+            <div class="form__btns">
+              <button class="btn btn--sm" type="button" @click="timeRange = [1, 24]">
+                All Day
+              </button>
+              <button
+                class="btn btn--sm"
+                type="button"
+                @click="timeRange = [new Date().getHours(), new Date().getHours() + 1]"
+              >
+                Now
+              </button>
+            </div>
+          </div>
+          <v-range-slider
+            :tick-labels="ticksLabels"
+            v-model="timeRange"
+            min="1"
+            max="24"
+            ticks="always"
+            tick-size="4"
+          ></v-range-slider>
+        </div>
+      </div>
       <div class="vue-container__legend">
         <p class="vue-container__elem vue-container__elem--common">Common</p>
         <p class="vue-container__elem vue-container__elem--uncommon">
@@ -87,6 +114,11 @@ export default Vue.extend({
   },
   data() {
     return {
+      timeRange: [new Date().getHours(), new Date().getHours() + 1],
+      ticksLabels: [...Array(24).keys()].map(num => {
+        num += 1;
+        return num % 2 ? num : '';
+      }),
       critterSearch: {
         lang: {
           text: this.$store.state.totalCritters.lang.text,
@@ -107,7 +139,9 @@ export default Vue.extend({
       return this.critterList
         .filter(
           (critter: Critter) =>
-            !critter.allYear && critter.availableMonths.includes(this.currentMonth),
+            this.filterByTime(critter.timeArray, this.timeRange) &&
+            !critter.allYear &&
+            critter.availableMonths.includes(this.currentMonth),
         )
         .map((critter: Critter) => {
           critter.state = this.getState(critter, this.currentMonth);
@@ -149,6 +183,17 @@ export default Vue.extend({
     },
     onChangeMonth(value): void {
       this.currentMonth = value;
+    },
+
+    filterByTime(critterTimeArr: number[], selectedTimeRange: number[]): boolean {
+      if (critterTimeArr.length === 24) {
+        return true;
+      }
+      return (
+        (critterTimeArr[0] >= selectedTimeRange[0] && critterTimeArr[0] <= selectedTimeRange[1]) ||
+        (critterTimeArr[critterTimeArr.length - 1] >= selectedTimeRange[0] &&
+          critterTimeArr[critterTimeArr.length - 1] <= selectedTimeRange[1])
+      );
     },
   },
 });

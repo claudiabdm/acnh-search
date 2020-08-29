@@ -2,7 +2,7 @@
   <nav class="month-navbar">
     <button
       type="button"
-      class="btn month-navbar__button"
+      class="btn btn--secondary month-navbar__button"
       id="buttonPrev"
       @click="prevMonth()"
     >
@@ -14,7 +14,7 @@
     <h2 class="month-navbar__title">{{ month | formatMonth }}</h2>
     <button
       type="button"
-      class="month-navbar__button btn"
+      class="month-navbar__button btn btn--secondary"
       id="buttonNext"
       @click="nextMonth()"
     >
@@ -80,7 +80,6 @@ export default Vue.extend({
   }
 
   &__button {
-    background-color: var(--body-color);
     font-size: 0;
     & + & {
       margin-left: 20px;

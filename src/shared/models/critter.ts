@@ -6,6 +6,7 @@ export interface Critter {
   availableMonths: number[];
   allYear: boolean;
   time: string;
+  timeArray: number[];
   location: string;
   state: string;
   rarity: string;

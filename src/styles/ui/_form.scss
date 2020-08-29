@@ -2,15 +2,12 @@
   @include flex(flex-start, center);
   @include size(100%, auto);
   background: transparent;
-
-  &--search {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(rem(250px), rem(375px)));
-    grid-template-rows: repeat(3, max-content);
-    width: 100%;
-    column-gap: 10px;
-    justify-items: center;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(rem(250px), rem(375px)));
+  grid-template-rows: repeat(3, max-content);
+  column-gap: 10px;
+  row-gap: 10px;
+  justify-items: center;
 
   &__group {
     @include size(100%, auto);
@@ -18,24 +15,27 @@
     min-width: rem(250px);
     max-width: rem(768px);
     margin: 0;
-    &--range {
-      display: unset;
-      width: 100%;
-      border-radius: rem(28px);
-      padding: 10px 24px;
-      background-color: var(--tertiary);
-    }
 
     &:first-child {
       grid-column: 1 / -1;
     }
 
-
-
     &:last-child {
       grid-column: 1 / -1;
     }
+  }
 
+  &__slider {
+    display: unset;
+    width: 100%;
+    border-radius: rem(28px);
+    padding: 10px 24px;
+    background-color: var(--tertiary);
+    &--time {
+      .v-input {
+        font-size: rem(12px);
+      }
+    }
   }
 
   &__control {
@@ -46,6 +46,14 @@
     & + & {
       margin-left: 5px;
     }
+  }
+
+  &__label {
+    @include flex(center, space-between);
+  }
+
+  &__btns {
+    @include flex(center, space-between);
   }
 
   &__text {

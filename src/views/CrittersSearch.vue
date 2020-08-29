@@ -2,6 +2,8 @@
   <div>
     <form class="form form--search">
       <CritterBasicSelect :search="critterSearch" @search="updateSearch" />
+
+      <!-- CRITTER TYPE -->
       <div class="form__group">
         <v-select
           v-model="types"
@@ -29,6 +31,9 @@
           </template>
         </v-select>
       </div>
+      <!-- // CRITTER TYPE -->
+
+      <!-- CRITTER RARITY -->
       <div class="form__group">
         <v-select
           v-model="rarity"
@@ -56,6 +61,9 @@
           </template>
         </v-select>
       </div>
+      <!-- // CRITTER RARITY -->
+
+      <!-- CRITTER MONTH -->
       <div class="form__group">
         <v-select
           :items="months"
@@ -82,7 +90,10 @@
           </template>
         </v-select>
       </div>
-      <div class="form__group form__group--range">
+      <!-- // CRITTER MONTH -->
+
+      <!-- CRITTER PRICE -->
+      <div class="form__group form__slider">
         <label class="v-label v-label--active theme--light">Bells</label>
         <v-range-slider
           v-model="range"
@@ -117,7 +128,35 @@
           </template>
         </v-range-slider>
       </div>
+      <!-- // CRITTER PRICE -->
+
+      <!-- CRITTER TIME -->
+      <div class="form__group form__slider form__slider--time">
+        <div class="form__label">
+          <label class="v-label v-label--active theme--light">Time</label>
+          <div class="form__btns">
+            <button class="btn btn--sm" type="button" @click="timeRange = [1, 24]">All Day</button>
+            <button
+              class="btn btn--sm"
+              type="button"
+              @click="timeRange = [new Date().getHours(), new Date().getHours() + 1]"
+            >
+              Now
+            </button>
+          </div>
+        </div>
+        <v-range-slider
+          :tick-labels="ticksLabels"
+          v-model="timeRange"
+          min="1"
+          max="24"
+          ticks="always"
+          tick-size="4"
+        ></v-range-slider>
+      </div>
+      <!-- // CRITTER TIME -->
     </form>
+    
     <div class="vue-container">
       <div class="vue-container__lists">
         <CritterList
@@ -164,6 +203,11 @@ export default Vue.extend({
   components: { CritterList, CritterBasicSelect, CritterModal, CritterInfo },
   data() {
     return {
+      timeRange: [1, 24],
+      ticksLabels: [...Array(24).keys()].map(num => {
+        num += 1;
+        return num % 2 ? num : '';
+      }),
       critterSearch: {
         lang: {
           text: this.$store.state.totalCritters.lang.text,
@@ -264,8 +308,8 @@ export default Vue.extend({
                 (critter.availableMonths.some(month => this.monthsSelected.includes(month)) ||
                   critter.allYear) &&
                 this.rarity.includes(critter.rarity.toLowerCase()) &&
-                ((critter.price >= this.range[0] && critter.price <= this.range[1]) ||
-                  (critter.priceCjFlick >= this.range[0] && critter.priceCjFlick <= this.range[1]))
+                this.filterByPrice(critter.price, critter.priceCjFlick, this.range) &&
+                this.filterByTime(critter.timeArray, this.timeRange)
               ) {
                 critter['show'] = 'visible';
               } else {
@@ -306,6 +350,27 @@ export default Vue.extend({
     },
     filterByMonth(e: number[]) {
       this.monthsSelected = e;
+    },
+    filterByPrice(
+      critterPrice: number,
+      critterPriceCjFlick: number,
+      selectedPriceRange: number[],
+    ): boolean {
+      return (
+        (critterPrice >= selectedPriceRange[0] && critterPrice <= selectedPriceRange[1]) ||
+        (critterPriceCjFlick >= selectedPriceRange[0] &&
+          critterPriceCjFlick <= selectedPriceRange[1])
+      );
+    },
+    filterByTime(critterTimeArr: number[], selectedTimeRange: number[]): boolean {
+      if (critterTimeArr.length === 24) {
+        return true;
+      }
+      return (
+        (critterTimeArr[0] >= selectedTimeRange[0] && critterTimeArr[0] <= selectedTimeRange[1]) ||
+        (critterTimeArr[critterTimeArr.length - 1] >= selectedTimeRange[0] &&
+          critterTimeArr[critterTimeArr.length - 1] <= selectedTimeRange[1])
+      );
     },
   },
 });

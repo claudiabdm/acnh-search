@@ -47,6 +47,7 @@ const createCritter = function(
     availableMonths,
     allYear: critter.availability.isAllYear,
     time: critter.availability.time ? critter.availability.time : 'All Day',
+    timeArray: critter.availability['time-array'].map(num => num++),
     location: critter.availability.location,
     state: '',
     rarity: critter.availability.rarity || 'Common',
