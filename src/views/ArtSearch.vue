@@ -1,6 +1,6 @@
 <template>
   <div class="vue-container">
-    hola
+   Coming soon
   </div>
 </template>
 <script lang="ts">
