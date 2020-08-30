@@ -2,7 +2,7 @@
 
 An app to search critter info for the game Animal Crossing: New Horizons.
 
-Demo available: https://claudiabdm.github.io/acnh-vue/#/critters/bugs
+Demo available: https://claudiabdm.github.io/acnh-search
 
 AcnhSearch is a progressive web app build on Vue and severless app using AWS Amplify. 
 
