@@ -158,7 +158,7 @@ export default Vue.extend({
       return this.critterListFiltered.filter((critter: Critter) => critter.state === 'onseason');
     },
     crittersAllYear(): Critter[] {
-      return this.critterList.filter((critter: Critter) => critter.allYear);
+      return this.critterList.filter((critter: Critter) => critter.allYear && this.filterByTime(critter.timeArray, this.timeRange));
     },
   },
   methods: {
@@ -190,9 +190,18 @@ export default Vue.extend({
       if (critterTimeArr.length === 24) {
         return true;
       }
+      if (critterTimeArr[0] > critterTimeArr[critterTimeArr.length - 1]) {
+        return (
+          critterTimeArr[0] <= selectedTimeRange[1] ||
+          critterTimeArr[critterTimeArr.length - 1] >= selectedTimeRange[0]
+        );
+      }
       return (
-        critterTimeArr.includes(selectedTimeRange[0]) ||
-        critterTimeArr.includes(selectedTimeRange[1] - 1)
+        (critterTimeArr[0] >= selectedTimeRange[0] && critterTimeArr[0] <= selectedTimeRange[1]) ||
+        (critterTimeArr[critterTimeArr.length - 1] >= selectedTimeRange[0] &&
+          critterTimeArr[critterTimeArr.length - 1] <= selectedTimeRange[1]) ||
+        (critterTimeArr[0] <= selectedTimeRange[0] &&
+          critterTimeArr[critterTimeArr.length - 1] >= selectedTimeRange[1])
       );
     },
   },

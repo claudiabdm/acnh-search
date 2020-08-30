@@ -306,13 +306,15 @@ export default Vue.extend({
                 critter['show'] = 'visible';
                 return critter;
               }
-              if (
-                (critter.availableMonths.some(month => this.monthsSelected.includes(month)) ||
-                  critter.allYear) &&
-                this.rarity.includes(critter.rarity.toLowerCase()) &&
-                this.filterByPrice(critter.price, critter.priceCjFlick, this.range) &&
-                this.filterByTime(critter.timeArray, this.timeRange)
-              ) {
+
+              const isByMonth =
+                critter.availableMonths.some(month => this.monthsSelected.includes(month)) ||
+                critter.allYear;
+              const isByRarity = this.rarity.includes(critter.rarity.toLowerCase());
+              const isByPrice = this.filterByPrice(critter.price, critter.priceCjFlick, this.range);
+              const isByTime = this.filterByTime(critter.timeArray, this.timeRange);
+
+              if (isByMonth && isByRarity && isByPrice && isByTime) {
                 critter['show'] = 'visible';
               } else {
                 critter['show'] = 'hide';
@@ -369,9 +371,18 @@ export default Vue.extend({
       if (critterTimeArr.length === 24) {
         return true;
       }
+      if (critterTimeArr[0] > critterTimeArr[critterTimeArr.length - 1]) {
+        return (
+          critterTimeArr[0] <= selectedTimeRange[1] ||
+          critterTimeArr[critterTimeArr.length - 1] >= selectedTimeRange[0]
+        );
+      }
       return (
-        critterTimeArr.includes(selectedTimeRange[0]) ||
-        critterTimeArr.includes(selectedTimeRange[1] - 1)
+        (critterTimeArr[0] >= selectedTimeRange[0] && critterTimeArr[0] <= selectedTimeRange[1]) ||
+        (critterTimeArr[critterTimeArr.length - 1] >= selectedTimeRange[0] &&
+          critterTimeArr[critterTimeArr.length - 1] <= selectedTimeRange[1]) ||
+        (critterTimeArr[0] <= selectedTimeRange[0] &&
+          critterTimeArr[critterTimeArr.length - 1] >= selectedTimeRange[1])
       );
     },
   },
