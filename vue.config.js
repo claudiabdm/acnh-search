@@ -1,7 +1,7 @@
 module.exports = {
-  // publicPath: process.env.NODE_ENV === 'production'
-  //   ? '/acnh-search/'
-  //   : '/',
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/acnh-search/'
+    : '/',
   assetsDir: './assets',
   transpileDependencies: [
     "vuetify"
