@@ -19,17 +19,20 @@
                     :ripple="false"
                   ></v-checkbox>
                 </template>
-                <label :for="critter.id" :class="['list__elem', currentCritterColor(critter)]">
+                <label
+                  :for="critter.id"
+                  :class="['list__elem-label', currentCritterColor(critter)]"
+                >
                   {{ critter.name }}
                 </label>
+                <button
+                  type="button"
+                  class="btn btn--sm btn--base btn--open-modal list__btn"
+                  @click="onSelectCritter(critter)"
+                >
+                  <img :src="critter.icon" :alt="critter.name + 'icon'" class="list__icon" />
+                </button>
               </div>
-              <button
-                type="button"
-                class="btn btn--sm btn--base btn--open-modal list__btn"
-                @click="onSelectCritter(critter)"
-              >
-                <img :src="critter.icon" :alt="critter.name + 'icon'" class="list__icon" />
-              </button>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -105,8 +108,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import '@/styles/ui/_list.scss';
-
 .theme--light.v-application {
   color: var(--body-color);
 }

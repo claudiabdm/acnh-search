@@ -40,8 +40,6 @@
   &__elem {
     @include size(100%, auto);
     @include flex(center, flex-start);
-    flex-basis: 0;
-    max-width: rem(140px);
     font-size: rem(14px);
     font-weight: $font-weight-normal;
     text-transform: capitalize;
@@ -67,6 +65,16 @@
       color: $secondary;
     }
   }
+
+  &__elem-label {
+    margin-right: auto;
+    margin-left: 0;
+    padding-right: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   @media screen and (min-width: 375px) {
     max-width: 100%;
   }
