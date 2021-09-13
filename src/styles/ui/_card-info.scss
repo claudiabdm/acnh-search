@@ -22,6 +22,10 @@
       width: 100%;
     }
   }
+
+  p.card__text {
+    margin: 0;
+  }
   
   &__property {
     font-weight: $font-weight-bold;

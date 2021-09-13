@@ -65,7 +65,6 @@ export default Vue.extend({
   &__property--title {
     white-space: pre-wrap;
     border-radius: rem(20px);
-    margin-bottom: rem(16px);
     padding: rem(5px) rem(10px);
     color: #fff;
     background-color: $primary;

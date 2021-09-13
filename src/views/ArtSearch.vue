@@ -26,7 +26,3 @@ export default Vue.extend({
   },
 });
 </script>
-<style lang="scss" scoped>
-@import '@/styles/ui/_container.scss';
-@import '@/styles/ui/_form.scss';
-</style>

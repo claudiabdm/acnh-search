@@ -72,35 +72,3 @@ $font-weight-bold: 700;
 $md: 768px;
 $lg: 1023px;
 
-
-// Light and Dark theme
-// ------------------------------------------
-
-:root {
-  --body-color: #{$base};
-  --body-bg: #fff3c5;
-  --tertiary: #{$tertiary};
-  --hover-bg: #{darken($tertiary, 2.5%)};
-  --icon-filter: grayscale(1);
-  --icon-filter-selected: none;
-  --amplify-primary-color: #{$primary};
-  --amplify-primary-shade: #{lighten($primary, 2.5%)};
-  --amplify-secondary-color: #{$base};
-  --amplify-white: #{$tertiary};
-  --amplify-grey:  #{$base};
-  --amplify-light-grey:  #{$base};
-  --amplify-primary-tint: #{lighten($primary, 2.5%)};
-  --amplify-font-family: #{$font-family-primary};
-
-}
-
-// @media (prefers-color-scheme: dark) {
-//   :root {
-//     --body-color: #fff;
-//     --body-bg:  #{$grey-400};
-//     --tertiary: #{$grey-200};
-//     --hover-bg: #{darken($grey-300, 2.5%)};
-//     --icon-filter: grayscale(1) invert(1) opacity(0.8);
-//     --icon-filter-selected: hue-rotate(-180deg) invert(1) opacity(1);
-//   }
-// }
