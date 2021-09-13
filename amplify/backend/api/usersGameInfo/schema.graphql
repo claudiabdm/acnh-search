@@ -4,5 +4,6 @@ type UserCritterInfo
   id: String!
   bugs: [String]
   fish: [String]
-  sea: [String]
+  sea: [String],
+  art: [String]
 }

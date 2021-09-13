@@ -5,6 +5,7 @@ import { ArtApi } from './models/artApi';
 const createArtItem = function(artItem: ArtApi, lang: string): Art {
   const artObj: Art = {
     id: artItem.id,
+    type: artItem['file-name'].split('_')[1],
     name: artItem.name[lang],
     hasFake: artItem.hasFake,
     buyPrice: artItem['buy-price'],

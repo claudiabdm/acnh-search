@@ -1,6 +1,6 @@
 .vue-container {
   padding-bottom: $navbar-height;
-  @include flex(center, center);
+  @include flex(center, flex-start);
   flex-direction: column;
   background: transparent;
 
@@ -19,7 +19,7 @@
   &__lists {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(rem(240px), rem(400px)));
     gap: rem(10px);
     align-content: center;
     justify-items: stretch;

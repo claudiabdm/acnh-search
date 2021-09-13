@@ -1,0 +1,33 @@
+.card {
+  @include flex(flex-start, flex-start);
+  flex-direction: column;
+  width: 100%;
+  background-color: $tertiary;
+
+  &__img {
+    @include size(auto, 100px);
+    align-self: center;
+    &--art {
+      height: auto;
+    }
+  }
+  
+  &__text {
+    padding: 5px;
+    font-weight: $font-weight-normal;
+    line-height: 1.25;
+    margin: 0;
+    &--flex {
+      @include flex(center, space-between);
+      width: 100%;
+    }
+  }
+  
+  &__property {
+    font-weight: $font-weight-bold;
+  }
+
+  &__value {
+    text-transform: capitalize;
+  }
+}

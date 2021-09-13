@@ -14,7 +14,7 @@ export default {
   actions: {
     async getArtList({ commit, rootState }) {
       const artList = await artData.loadArt(rootState.lang.value);
-      commit(`updateArtList`, artList);
+      commit(`updateArtList`, artList.sort((a, b) => a.type.localeCompare(b.type)));
     },
   },
 };

@@ -1,40 +1,40 @@
 <template>
-  <div class="critter">
-    <img :src="currentCritter.img" class="critter__img" :alt="currentCritter + 'image'"/>
+  <div class="card">
+    <img :src="currentCritter.img" class="card__img" :alt="currentCritter + 'image'"/>
     <template v-if="!currentCritter.allYear">
-      <p class="critter__text">
-        <span class="critter__property">Start Month:</span>
+      <p class="card__text">
+        <span class="card__property">Start Month:</span>
         {{ currentCritter.startMonth | formatMonth }}
       </p>
-      <p class="critter__text">
-        <span class="critter__property">End Month:</span>
+      <p class="card__text">
+        <span class="card__property">End Month:</span>
         {{ currentCritter.endMonth | formatMonth }}
       </p>
-      <p class="critter__text">
-        <span class="critter__property">Available Months:</span>
+      <p class="card__text">
+        <span class="card__property">Available Months:</span>
         {{ currentCritter.availableMonths | formatMonth }}
       </p>
     </template>
-    <p class="critter__text" v-if="currentCritter.allYear">All year</p>
-    <p class="critter__text">
-      <span class="critter__property">Time:</span> {{ currentCritter.time }}
+    <p class="card__text" v-if="currentCritter.allYear">All year</p>
+    <p class="card__text">
+      <span class="card__property">Time:</span> {{ currentCritter.time }}
     </p>
-    <p class="critter__text"  v-if="currentCritter.location">
-      <span class="critter__property">Location:</span>
+    <p class="card__text"  v-if="currentCritter.location">
+      <span class="card__property">Location:</span>
       {{ currentCritter.location }}
     </p>
-    <p class="critter__text" v-if="currentCritter.rarity">
-      <span class="critter__property">Rarity:</span> {{ currentCritter.rarity }}
+    <p class="card__text" v-if="currentCritter.rarity">
+      <span class="card__property">Rarity:</span> {{ currentCritter.rarity }}
     </p>
-    <p class="critter__text" v-if="currentCritter.shadow">
-      <span class="critter__property">Shadow:</span> {{ currentCritter.shadow }}
+    <p class="card__text" v-if="currentCritter.shadow">
+      <span class="card__property">Shadow:</span> {{ currentCritter.shadow }}
     </p>
-    <p class="critter__text">
-      <span class="critter__property">Price:</span>
+    <p class="card__text">
+      <span class="card__property">Price:</span>
       {{ currentCritter.price }} bells
     </p>
-    <p class="critter__text" v-if="buyerType">
-      <span class="critter__property">Price {{ buyerType }}:</span>
+    <p class="card__text" v-if="buyerType">
+      <span class="card__property">Price {{ buyerType }}:</span>
       {{ currentCritter.priceCjFlick }} bells
     </p>
   </div>

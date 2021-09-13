@@ -9,6 +9,7 @@ export const getUserCritterInfo = /* GraphQL */ `
       bugs
       fish
       sea
+      art
       createdAt
       updatedAt
       owner
@@ -31,6 +32,7 @@ export const listUserCritterInfos = /* GraphQL */ `
         bugs
         fish
         sea
+        art
         createdAt
         updatedAt
         owner
