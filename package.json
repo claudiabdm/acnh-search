@@ -13,7 +13,7 @@
   "dependencies": {
     "@aws-amplify/ui-vue": "^0.2.13",
     "@vue/composition-api": "^1.0.0-beta.8",
-    "aws-amplify": "^3.0.23",
+    "aws-amplify": "^5.3.4",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "moment": "^2.26.0",
